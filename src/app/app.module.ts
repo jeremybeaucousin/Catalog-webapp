@@ -27,6 +27,7 @@ import { ToolBoxSheetsComponent } from './tool-box-sheets/tool-box-sheets.compon
 import { HomeComponent } from './home/home.component';
 import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
 import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -37,10 +38,10 @@ import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-
     ToolBoxSheetViewComponent
   ],
   imports: [
-
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,

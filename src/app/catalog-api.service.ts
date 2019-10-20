@@ -85,8 +85,16 @@ export class CatalogApiService {
       }))
   }
 
-  public getToolBoxSheetById(_id: string) {
+  public getToolBoxSheetById(_id: string): Observable<any> {
     return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`);
+  }
+
+  public addToolBoxSheet(data): Observable<any> {
+    return this.http.post(CatalogApiService.getToolBoxSheetsUri(), data);
+  }
+
+  public editToolBoxSheet(_id, data): Observable<any> {
+    return this.http.put(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, data);
   }
 
   public deleteToolBoxSheets(_id: string) {
