@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
 import { MatPaginator, MatSort, MatInput, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
@@ -9,7 +11,14 @@ import { CatalogApiService } from '../catalog-api.service';
 @Component({
   selector: 'app-tool-box-sheets',
   templateUrl: './tool-box-sheets.component.html',
-  styleUrls: ['./tool-box-sheets.component.sass']
+  styleUrls: ['./tool-box-sheets.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ToolBoxSheetsComponent implements AfterViewInit {
   displayedColumns: string[] = ["_id", 'test', 'sortTest', "actions"];
@@ -18,6 +27,7 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+  expandedRow;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;

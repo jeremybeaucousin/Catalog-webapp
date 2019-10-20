@@ -13,12 +13,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolBoxSheetsComponent } from './tool-box-sheets/tool-box-sheets.component';
 import { HomeComponent } from './home/home.component';
+import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
+import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolBoxSheetsComponent,
-    HomeComponent
+    HomeComponent,
+    ToolBoxSheetComponent,
+    ToolBoxSheetViewComponent
   ],
   imports: [
     BrowserModule,
