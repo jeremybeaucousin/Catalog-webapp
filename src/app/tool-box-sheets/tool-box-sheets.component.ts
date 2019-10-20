@@ -12,7 +12,7 @@ import { CatalogApiService } from '../catalog-api.service';
   styleUrls: ['./tool-box-sheets.component.sass']
 })
 export class ToolBoxSheetsComponent implements AfterViewInit {
-  displayedColumns: string[] = ["_id", 'test', 'sortTest'];
+  displayedColumns: string[] = ["_id", 'test', 'sortTest', "actions"];
   data;
 
   resultsLength = 0;

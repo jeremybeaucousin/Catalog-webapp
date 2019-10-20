@@ -6,6 +6,7 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule } fro
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faLinkedin, faFacebook, faViadeo } from '@fortawesome/free-brands-svg-icons';
+import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,5 +42,8 @@ export class AppModule {
     library.addIcons(faLinkedin);
     library.addIcons(faFacebook);
     library.addIcons(faViadeo);
+    library.addIcons(faSearch);
+    library.addIcons(faEdit);
+    library.addIcons(faTrash);
   }
 }
