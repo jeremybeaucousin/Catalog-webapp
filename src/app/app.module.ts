@@ -1,12 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
+import {
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatInputModule,
+  MatButtonModule,
+  MatSnackBarModule,
+  MatTooltipModule
+} from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faLinkedin, faFacebook, faViadeo } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faEdit, faTrash, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +41,7 @@ import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatTooltipModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
@@ -51,5 +60,6 @@ export class AppModule {
     library.addIcons(faSearch);
     library.addIcons(faEdit);
     library.addIcons(faTrash);
+    library.addIcons(faPlusCircle);
   }
 }
