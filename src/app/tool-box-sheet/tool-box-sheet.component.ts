@@ -56,16 +56,19 @@ export class ToolBoxSheetComponent implements OnInit {
       if (this._id) {
         this.catalogService.getToolBoxSheetById(this._id).subscribe(
           (response) => {
-            console.log("load", response);
             if (!response._source.steps) {
               this.steps = [];
             } else {
-              this.steps = response._source.steps;
+              response._source.steps.forEach((element, index) => {
+                this.addStep(element);
+              });
             }
             if (!response._source.materials) {
               this.materials = [];
             } else {
-              this.materials = response._source.materials;
+              response._source.materials.forEach((element, index) => {
+                this.addMaterial(element);
+              })
             }
             this.data = response._source;
           }
@@ -81,8 +84,12 @@ export class ToolBoxSheetComponent implements OnInit {
     return this.stepsForm.get('stepsArray') as FormArray;
   }
 
-  addStep(item) {
-    this.steps.push(item);
+  addStep(description) {
+    var newStep = {
+      id: this.steps.length,
+      description: description
+    };
+    this.steps.push(newStep);
     this.stepsArray.push(this.formBuilder.control(false));
   }
 
@@ -95,8 +102,12 @@ export class ToolBoxSheetComponent implements OnInit {
     return this.materialsForm.get('materialsArray') as FormArray;
   }
 
-  addMaterial(item) {
-    this.materials.push(item);
+  addMaterial(description) {
+    var newMateriel = {
+      id: this.materials.length,
+      description: description
+    };
+    this.materials.push(newMateriel);
     this.materialsArray.push(this.formBuilder.control(false));
   }
 
@@ -106,17 +117,12 @@ export class ToolBoxSheetComponent implements OnInit {
   }
 
   onSubmit(data: NgForm) {
-    console.log(data.value);
-    console.log(data.valid);
-    console.log(this.steps);
-
-    console.log(this.stepsForm.value);
-    console.log(this.materials);
-    console.log(this.materialsForm.value);
+    // Add Values from form array
+    data.value.steps = this.stepsArray.value;
+    data.value.materials = this.materialsArray.value;
     if (this._id) {
       this.catalogService.editToolBoxSheet(this._id, data.value).subscribe(
         response => {
-          console.log(response);
           this._snackBar.open("Fiche mise à jour", "fermer", {
             // In seconds
             duration: 3 * 1000,
@@ -125,7 +131,6 @@ export class ToolBoxSheetComponent implements OnInit {
     } else {
       this.catalogService.addToolBoxSheet(data.value).subscribe(
         response => {
-          console.log(response);
           if (response._id) {
             this._id = response._id;
           }

@@ -33,8 +33,7 @@
 
     <label for="stepsArray">
         Les étapes
-        <button type="button" mat-icon-button (click)="addStep({id : 'test', description : ''})"
-            matTooltip="Ajouter une nouvelle étapes">
+        <button type="button" mat-icon-button (click)="addStep('')" matTooltip="Ajouter une nouvelle étapes">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
@@ -42,8 +41,9 @@
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
         <div formArrayName="stepsArray" class="row col-md-4" *ngFor="let step of steps; let i=index">
             <mat-form-field class="col-md-11">
-                <textarea matInput [id]="step.id" placeholder="Déscription {{ i + 1 }}"
-                    [formControlName]="stepsArray[i]" [value]="step.description"></textarea>
+                <textarea matInput [id]="step.id" [ngModel]="steps[i].description" name="steps{{i}}"
+                    formControlName="{{i}}" placeholder="Déscription {{ i + 1 }}"
+                    [formControl]="stepsArray[i]"></textarea>
             </mat-form-field>
             <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
                 matTooltip="Supprimer une étape">
@@ -63,8 +63,7 @@
 
     <label for="materialsArray">
         Matériels
-        <button type="button" mat-icon-button (click)="addMaterial({id : 'test', description : ''})"
-            matTooltip="Ajouter un nouveau materiel">
+        <button type="button" mat-icon-button (click)="addMaterial('')" matTooltip="Ajouter un nouveau materiel">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
@@ -72,8 +71,8 @@
     <form class="row" [formGroup]="materialsForm">
         <div formArrayName="materialsArray" class="row col-md-4" *ngFor="let material of materials; let i=index">
             <mat-form-field class="col-md-11">
-                <input matInput [id]="material.id" placeholder="Déscription {{ i + 1 }}"
-                    [formControlName]="materialsArray[i]" [value]="material.description">
+                <input matInput [id]="material.id" placeholder="Déscription {{ i + 1 }}" name="materials{{i}}"
+                    formControlName="{{i}}" [formControl]="materialsArray[i]" [value]="material.description">
             </mat-form-field>
             <button type="button" class="col-md-1" mat-icon-button (click)="removeMaterial(i)"
                 matTooltip="Supprimer un materiel">
