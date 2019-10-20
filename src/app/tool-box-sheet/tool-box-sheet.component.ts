@@ -15,7 +15,10 @@ export class ToolBoxSheetComponent implements OnInit {
 
   _id?: string;
 
-  data;
+  data = {
+    steps: [],
+    materials: []
+  };
 
   stepsForm: FormGroup;
   materialsForm: FormGroup;
@@ -45,11 +48,15 @@ export class ToolBoxSheetComponent implements OnInit {
         this.catalogService.getToolBoxSheetById(this._id).subscribe(
           (response) => {
             console.log("load", response);
+            if (!response._source.steps) {
+              response._source.steps = [];
+            }
+            if (!response._source.materials) {
+              response._source.materials = [];
+            }
             this.data = response._source;
           }
         );
-      } else {
-        this.data = {};
       }
     });
   }
@@ -62,7 +69,6 @@ export class ToolBoxSheetComponent implements OnInit {
   onSubmit(data: NgForm) {
     console.log(data.value);
     console.log(data.valid);
-    data.value.duration = null;
     console.log(this.materialsForm.value);
     console.log(this.stepsForm.value);
     if (this._id) {

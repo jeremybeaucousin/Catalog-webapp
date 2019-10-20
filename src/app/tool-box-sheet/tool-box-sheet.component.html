@@ -1,4 +1,5 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" validate>
+    {{ data | json}}
     <mat-form-field>
         <input matInput ngModel name="title" placeholder="Titre" (value)="data.title" required>
     </mat-form-field>
@@ -20,8 +21,8 @@
 
         <div class=col-md-4>
             <mat-form-field>
-                <input type="time" matInput ngModel name="duration" placeholder="Durée" (value)="data.duration"
-                    required />
+                <input type="time" matInput ngModel name="eventDuration" placeholder="Durée"
+                    (value)="data.eventDuration" required />
             </mat-form-field>
         </div>
     </div>
@@ -38,10 +39,14 @@
         </button>
     </label>
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
-        <div formArrayName="steps" class="col-md-4" *ngFor="let steps of data?.steps; let i=index">
-            <mat-form-field>
+        <div formArrayName="steps" class="row col-md-4" *ngFor="let steps of data.steps; let i=index">
+            <mat-form-field class="col-md-11">
                 <textarea matInput placeholder="Déscription {{ i + 1 }}" (value)="data.steps[i]"></textarea>
             </mat-form-field>
+            <button class="col-md-1" type="button" mat-icon-button (click)="data.steps.splice(i, 1)"
+                matTooltip="Supprimer une étape">
+                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+            </button>
         </div>
     </form>
 
@@ -62,10 +67,14 @@
         </button>
     </label>
     <form id="materialsArray" class="row" [formGroup]="materialsForm">
-        <div formArrayName="materials" class="col-md-4" *ngFor="let material of data?.materials; let i=index">
-            <mat-form-field>
+        <div formArrayName="materials" class="row col-md-4" *ngFor="let material of data.materials; let i=index">
+            <mat-form-field class="col-md-11">
                 <input matInput placeholder="Déscription {{ i + 1 }}" (value)="data.materials[i]">
             </mat-form-field>
+            <button type="button" class="col-md-1" mat-icon-button (click)="data.materials.splice(i, 1)"
+                matTooltip="Supprimer un materiel">
+                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+            </button>
         </div>
     </form>
 
