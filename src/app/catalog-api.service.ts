@@ -49,7 +49,12 @@ export class CatalogApiService {
   }
 
 
-  public getToolBoxSheets(offset: number, limit: number, sortField: String, sortDirection: String): Observable<[number, object]> {
+  public getToolBoxSheets(
+    offset: number,
+    limit: number,
+    sortField: string,
+    sortDirection: string,
+    wordSequence: string): Observable<[number, object]> {
     var params = new HttpParams({ encoder: new CustomEncoder() });
     if (offset) {
       params = params.append(CatalogApiService.queryParameters.offset, offset.toString());
@@ -62,6 +67,10 @@ export class CatalogApiService {
     if (sortField && sortDirection) {
       const sortValue = sortField + ((sortDirection == "desc") ? "-" : "+");
       params = params.append(CatalogApiService.queryParameters.sort, sortValue);
+    }
+
+    if (wordSequence) {
+      params = params.append(CatalogApiService.queryParameters.wordSequence, wordSequence);
     }
 
     return this.http.get(CatalogApiService.getToolBoxSheetsUri(), { params: params, observe: 'response' }).pipe(

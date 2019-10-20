@@ -1,5 +1,9 @@
 <div class="example-table-container">
 
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
     <table mat-table [dataSource]="data" class="example-table" matSort matSortDisableClear matSortDirection="desc">
         <!-- id Column -->
         <ng-container matColumnDef="_id">
@@ -22,6 +26,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-</div>
 
-<mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+</div>

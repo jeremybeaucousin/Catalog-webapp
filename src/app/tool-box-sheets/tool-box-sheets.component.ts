@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator, MatSort, MatInput } from '@angular/material';
 import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
@@ -22,20 +21,27 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatInput, { static: false }) matInput: MatInput;
 
   constructor(private catalogService: CatalogApiService) { }
+
+  applyFilter(filterValue: string) {
+    // Trigger the page changement event
+    this.paginator.firstPage();
+  }
 
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-    merge(this.sort.sortChange, this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page, this.matInput.stateChanges)
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
           const offset = (this.paginator.pageIndex * this.paginator.pageSize);
           const limit = this.paginator.pageSize;
-          return this.catalogService.getToolBoxSheets(offset, limit, this.sort.active, this.sort.direction);
+          const wordSequence = this.matInput.value;
+          return this.catalogService.getToolBoxSheets(offset, limit, this.sort.active, this.sort.direction, wordSequence);
         }),
         map((response) => {
           // Flip flag to show that loading has finished.
