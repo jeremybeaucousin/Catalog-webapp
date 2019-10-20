@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faTwitter, faLinkedin, faFacebook, faViadeo } from '@fortawesome/free-brands-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,4 +28,11 @@ import { HomeComponent } from './home/home.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faTwitter);
+    library.addIcons(faLinkedin);
+    library.addIcons(faFacebook);
+    library.addIcons(faViadeo);
+  }
+}
