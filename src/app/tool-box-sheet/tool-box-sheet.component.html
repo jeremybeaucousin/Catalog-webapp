@@ -1,2 +1,67 @@
-<p>{{ _id }}</p>
-<p>{{ data }} </p>
+<form>
+    <mat-form-field>
+        <input matInput placeholder="Titre" [value]="data.title">
+    </mat-form-field>
+
+    <div class="form-group row range-time">
+        <div class=col-md-4>
+            <label for="numPersonMin">Nombre de personne minimal</label>
+            <mat-slider id="numPersonMin" matInput max="30" min="1" step="1" thumbLabel="true"
+                [value]="data.numPersonMin">
+            </mat-slider>
+        </div>
+
+        <div class=col-md-4>
+            <label for="numPersonMax">Nombre de personne maximal</label>
+            <mat-slider id="numPersonMax" matInput max="30" min="1" step="1" thumbLabel="true"
+                [value]="data.numPersonMax">
+            </mat-slider>
+        </div>
+
+        <div class=col-md-4>
+            <mat-form-field>
+                <input type="time" matInput placeholder="Durée" [value]="data.duration" />
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-form-field>
+        <textarea matInput placeholder="Résumé de la pratique" [value]="data.description"></textarea>
+    </mat-form-field>
+
+    <label for="stepsArray">
+        Les étapes
+        <button mat-icon-button (click)="data.steps.push('')" matTooltip="Ajouter une nouvelle étapes">
+            <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
+        </button>
+    </label>
+    <form id="stepsArray" class="row" [formGroup]="stepsForm">
+        <div formArrayName="steps" class="col-md-4" *ngFor="let steps of data.steps; let i=index">
+            <mat-form-field>
+                <textarea matInput placeholder="Déscription {{ i + 1 }}" [value]="data.steps[i]"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <mat-form-field>
+        <textarea matInput placeholder="Objectif" [value]="data.goal"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea matInput placeholder="Valeur ajoutée" [value]="data.addedValue"></textarea>
+    </mat-form-field>
+
+    <label for="materialsArray">
+        Matériels
+        <button mat-icon-button (click)="data.materials.push('')" matTooltip="Ajouter un nouveau materiel">
+            <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
+        </button>
+    </label>
+    <form id="materialsArray" class="row" [formGroup]="materialsForm">
+        <div formArrayName="materials" class="col-md-4" *ngFor="let material of data.materials; let i=index">
+            <mat-form-field>
+                <input matInput placeholder="Déscription {{ i + 1 }}" [value]="data.materials[i]">
+            </mat-form-field>
+        </div>
+    </form>
+</form>

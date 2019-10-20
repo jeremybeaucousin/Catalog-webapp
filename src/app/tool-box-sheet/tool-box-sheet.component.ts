@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
 import { ActivatedRoute } from '@angular/router';
 import { CatalogApiService } from '../catalog-api.service';
+
 
 @Component({
   selector: 'app-tool-box-sheet',
@@ -10,9 +13,29 @@ import { CatalogApiService } from '../catalog-api.service';
 export class ToolBoxSheetComponent implements OnInit {
 
   _id?: string;
-  data: Object;
+  data: Object = {
+    title: "",
+    materials: [
+    ],
+    steps: [
+    ]
+  };
 
-  constructor(private route: ActivatedRoute, private catalogService: CatalogApiService) {
+  stepsForm: FormGroup;
+  materialsForm: FormGroup;
+
+  constructor(
+    private route: ActivatedRoute,
+    private catalogService: CatalogApiService,
+    private formBuilder: FormBuilder) {
+
+    this.stepsForm = this.formBuilder.group({
+      steps: this.formBuilder.array([])
+    });
+
+    this.materialsForm = this.formBuilder.group({
+      materials: this.formBuilder.array([])
+    });
 
   }
 
@@ -27,5 +50,9 @@ export class ToolBoxSheetComponent implements OnInit {
         );
       }
     });
+  }
+
+  save() {
+    console.log(this.data);
   }
 }

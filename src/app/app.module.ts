@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {
   MatTableModule,
@@ -8,7 +9,10 @@ import {
   MatInputModule,
   MatButtonModule,
   MatSnackBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatSliderModule
 } from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +37,10 @@ import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-
     ToolBoxSheetViewComponent
   ],
   imports: [
+
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
@@ -42,6 +49,9 @@ import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-
     MatButtonModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSliderModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
