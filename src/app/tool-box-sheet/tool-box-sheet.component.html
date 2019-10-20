@@ -41,9 +41,8 @@
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
         <div formArrayName="stepsArray" class="row col-md-4" *ngFor="let step of steps; let i=index">
             <mat-form-field class="col-md-11">
-                <textarea matInput [id]="step.id" [ngModel]="steps[i].description" name="steps{{i}}"
-                    formControlName="{{i}}" placeholder="Déscription {{ i + 1 }}"
-                    [formControl]="stepsArray[i]"></textarea>
+                <textarea matInput [id]="step.id" name="steps{{i}}" formControlName="{{i}}"
+                    placeholder="Déscription {{ i + 1 }}" [formControl]="stepsArray[i]"></textarea>
             </mat-form-field>
             <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
                 matTooltip="Supprimer une étape">
