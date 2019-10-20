@@ -1,10 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from './../environments/environment';
+
+// Override default encoding to handle '+' and '-'
+class CustomEncoder implements HttpParameterCodec {
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -30,23 +49,30 @@ export class CatalogApiService {
   }
 
 
-  public getToolBoxSheets(offset: number, limit: number): Observable<[number, object]> {
-    var params = new HttpParams();
+  public getToolBoxSheets(offset: number, limit: number, sortField: String, sortDirection: String): Observable<[number, object]> {
+    var params = new HttpParams({ encoder: new CustomEncoder() });
     if (offset) {
-      console.log(offset);
       params = params.append(CatalogApiService.queryParameters.offset, offset.toString());
     }
 
     if (limit) {
-      console.log(limit);
       params = params.append(CatalogApiService.queryParameters.limit, limit.toString());
     }
-    console.log(params.keys());
-    // queryString.concat(`${CatalogApiService.queryParameters.offset}=${offset.toString()}`);
+
+    if (sortField && sortDirection) {
+      const sortValue = sortField + ((sortDirection == "desc") ? "-" : "+");
+      params = params.append(CatalogApiService.queryParameters.sort, sortValue);
+    }
+
     return this.http.get(CatalogApiService.getToolBoxSheetsUri(), { params: params, observe: 'response' }).pipe(
       map(response => {
-        const totalCount = Number(response.headers.get(CatalogApiService.responseHeaders.totalCount));
-        return [totalCount, response.body];
+        if (response.status == 200) {
+          const totalCount = Number(response.headers.get(CatalogApiService.responseHeaders.totalCount));
+          return [totalCount, response.body];
+        } else {
+          console.error(response.body);
+          return [0, []];
+        }
       }))
   }
 }

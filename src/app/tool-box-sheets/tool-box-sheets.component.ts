@@ -33,10 +33,9 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          console.log(this.sort.active, this.sort.direction);
           const offset = (this.paginator.pageIndex * this.paginator.pageSize);
           const limit = this.paginator.pageSize;
-          return this.catalogService.getToolBoxSheets(offset, limit);
+          return this.catalogService.getToolBoxSheets(offset, limit, this.sort.active, this.sort.direction);
         }),
         map((response) => {
           // Flip flag to show that loading has finished.
