@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolBoxSheetsComponent } from './tool-box-sheets/tool-box-sheets.component';
 import { HomeComponent } from './home/home.component';
-
 
 @NgModule({
   declarations: [
@@ -28,13 +27,16 @@ import { HomeComponent } from './home/home.component';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
     FontAwesomeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

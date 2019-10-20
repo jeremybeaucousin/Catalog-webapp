@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
-import { MatPaginator, MatSort, MatInput } from '@angular/material';
-import { merge, Observable, of as observableOf } from 'rxjs';
+import { MatPaginator, MatSort, MatInput, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 import { CatalogApiService } from '../catalog-api.service';
@@ -13,7 +13,7 @@ import { CatalogApiService } from '../catalog-api.service';
 })
 export class ToolBoxSheetsComponent implements AfterViewInit {
   displayedColumns: string[] = ["_id", 'test', 'sortTest', "actions"];
-  data;
+  dataSource: MatTableDataSource<any>;
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -23,13 +23,9 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatInput, { static: false }) matInput: MatInput;
 
-  constructor(private catalogService: CatalogApiService) { }
-
-  applyFilter(filterValue: string) {
-    // Trigger the page changement event
-    this.paginator.firstPage();
-  }
-
+  constructor(
+    private catalogService: CatalogApiService,
+    private _snackBar: MatSnackBar) { }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -47,8 +43,9 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
+          // Total count
           this.resultsLength = response[0];
-
+          // data
           return response[1];
         }),
         catchError(() => {
@@ -57,7 +54,29 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.data = data);
+      ).subscribe(data => {
+        var datasource = new MatTableDataSource(data as Array<any>);
+        this.dataSource = datasource;
+      });
   }
 
+  delete(_id: string) {
+    this.catalogService.deleteToolBoxSheets(_id).subscribe(
+      result => {
+        var data = this.dataSource.data;
+        // Supress deleted element
+        var suppressesIndex = data.findIndex(function (element) {
+          return element._id == _id;
+        });
+        data.splice(suppressesIndex, 1);
+        this.paginator.length = (this.paginator.length - 1);
+        // Reload change
+        this.dataSource._updateChangeSubscription();
+        this._snackBar.open("Enregistrement supprimée", "fermer", {
+          // In seconds
+          duration: 3 * 1000,
+        });
+      }
+    )
+  }
 }
