@@ -1,5 +1,5 @@
 <!-- Toolbar -->
-<div class="toolbar navbar navbar-expand-lg navbar-light bg-light" role="banner">
+<div class="row toolbar navbar navbar-expand-lg navbar-light bg-light" role="banner">
   <a class="navbar-brand" routerLink="/">
     <img width="320" alt="Scalian Logo" src="/assets/images/logo_scalian-1.png" />
   </a>
@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-  <nav class="col-sm-2">
+  <nav class="bg-light col-sm-2">
     <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link" routerLink="/" routerLinkActive="active">Accueil</a>
@@ -31,33 +31,29 @@
 </div>
 
 <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="site-logo">
-          <a class="navbar-brand" href="https://www.scalian.com/" title="Scalian" rel="home">
-            <img width="160" src="/assets/images/logo_scalian-1.png" alt="Scalian"></a>
-        </div>
-        <div class="copyright text-left">
-          Tous droits réservés© Copyright 2019. </div>
-      </div>
-      <div class="col-sm-2 text-right">
-        <div class="footer-rs">
-          <a target="_blank" href="https://www.linkedin.com/company/scaliangroup/">
-            <fa-icon [icon]="['fab', 'linkedin']"></fa-icon>
-          </a>
-          <a target="_blank" href="https://twitter.com/scaliangroup">
-            <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
-          </a>
-          <a target="_blank" href="https://www.facebook.com/ScalianGroup">
-            <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
-          </a>
-          <a target="_blank" href="http://www.viadeo.com/fr/company/scalian/follow">
-            <fa-icon [icon]="['fab', 'viadeo']"></fa-icon>
-          </a>
-        </div>
-      </div>
+<footer class="row bg-light">
+  <div class="col-sm-4">
+    <div class="site-logo">
+      <a class="navbar-brand" href="https://www.scalian.com/" title="Scalian" rel="home">
+        <img width="160" src="/assets/images/logo_scalian-1.png" alt="Scalian"></a>
+    </div>
+    <div class="copyright text-left">
+      Tous droits réservés© Copyright 2019. </div>
+  </div>
+  <div class="col-sm-2 text-right">
+    <div class="footer-rs">
+      <a target="_blank" href="https://www.linkedin.com/company/scaliangroup/">
+        <fa-icon [icon]="['fab', 'linkedin']"></fa-icon>
+      </a>
+      <a target="_blank" href="https://twitter.com/scaliangroup">
+        <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+      </a>
+      <a target="_blank" href="https://www.facebook.com/ScalianGroup">
+        <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+      </a>
+      <a target="_blank" href="http://www.viadeo.com/fr/company/scalian/follow">
+        <fa-icon [icon]="['fab', 'viadeo']"></fa-icon>
+      </a>
     </div>
   </div>
 </footer>
