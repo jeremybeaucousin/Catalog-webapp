@@ -85,6 +85,10 @@ export class CatalogApiService {
       }))
   }
 
+  public getToolBoxSheetById(_id: string) {
+    return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`);
+  }
+
   public deleteToolBoxSheets(_id: string) {
     return this.http.delete(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`);
   }
