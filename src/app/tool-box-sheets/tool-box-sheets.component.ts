@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogApiService } from '../catalog-api.service';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolBoxSheetsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private catalogService: CatalogApiService) { }
+
+  sheets;
 
   ngOnInit() {
+    this.catalogService.getToolBoxSheets().subscribe(
+      (data) => {
+        this.sheets = data;
+      }
+    )
   }
 
 }
