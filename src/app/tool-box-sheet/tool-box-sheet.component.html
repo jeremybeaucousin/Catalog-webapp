@@ -41,8 +41,8 @@
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
         <div formArrayName="stepsArray" class="row col-md-4" *ngFor="let step of steps; let i=index">
             <mat-form-field class="col-md-11">
-                <textarea matInput [id]="step.id" name="steps{{i}}" formControlName="{{i}}"
-                    placeholder="Déscription {{ i + 1 }}" [formControl]="stepsArray[i]"></textarea>
+                <textarea matInput name="{{i}}" formControlName="{{i}}" placeholder="Déscription {{ i + 1 }}"
+                    [formControl]="stepsArray[i]"></textarea>
             </mat-form-field>
             <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
                 matTooltip="Supprimer une étape">
@@ -70,8 +70,8 @@
     <form class="row" [formGroup]="materialsForm">
         <div formArrayName="materialsArray" class="row col-md-4" *ngFor="let material of materials; let i=index">
             <mat-form-field class="col-md-11">
-                <input matInput [id]="material.id" placeholder="Déscription {{ i + 1 }}" name="materials{{i}}"
-                    formControlName="{{i}}" [formControl]="materialsArray[i]" [value]="material.description">
+                <input matInput placeholder="Déscription {{ i + 1 }}" formControlName="{{i}}" name="materials{{i}}"
+                    [formControl]="materialsArray[i]">
             </mat-form-field>
             <button type="button" class="col-md-1" mat-icon-button (click)="removeMaterial(i)"
                 matTooltip="Supprimer un materiel">
