@@ -1,49 +1,51 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" validate>
-    {{ data | json}}
     <mat-form-field>
-        <input matInput ngModel name="title" placeholder="Titre" (value)="data.title" required>
+        <input matInput [ngModel]="data.title" name="title" placeholder="Titre" required>
     </mat-form-field>
 
     <div class="form-group row range-time">
         <div class=col-md-4>
             <label for="numPersonMin">Nombre de personne minimal</label>
-            <mat-slider id="numPersonMin" matInput ngModel name="numPersonMin" max="30" min="1" step="1"
-                thumbLabel="true" (value)="data.numPersonMin" required>
+            <mat-slider id="numPersonMin" matInput [ngModel]="data.numPersonMin" name="numPersonMin" max="30" min="1"
+                step="1" thumbLabel="true" required>
             </mat-slider>
         </div>
 
         <div class=col-md-4>
             <label for="numPersonMax">Nombre de personne maximal</label>
-            <mat-slider id="numPersonMax" matInput ngModel name="numPersonMax" max="30" min="1" step="1"
-                thumbLabel="true" (value)="data.numPersonMax" required>
+            <mat-slider id="numPersonMax" matInput [ngModel]="data.numPersonMax" name="numPersonMax" max="30" min="1"
+                step="1" thumbLabel="true" required>
             </mat-slider>
         </div>
 
         <div class=col-md-4>
             <mat-form-field>
-                <input type="time" matInput ngModel name="eventDuration" placeholder="Durée"
-                    (value)="data.eventDuration" required />
+                <input type="time" matInput [ngModel]="data.eventDuration" name="eventDuration" placeholder="Durée"
+                    required />
             </mat-form-field>
         </div>
     </div>
 
     <mat-form-field>
-        <textarea matInput placeholder="Résumé de la pratique" ngModel name="description" (value)="data.description"
+        <textarea matInput placeholder="Résumé de la pratique" [ngModel]="data.description" name="description"
             required></textarea>
     </mat-form-field>
 
     <label for="stepsArray">
         Les étapes
-        <button type="button" mat-icon-button (click)="data.steps.push('')" matTooltip="Ajouter une nouvelle étapes">
+        <button type="button" mat-icon-button (click)="addStep({id : 'test', description : ''})"
+            matTooltip="Ajouter une nouvelle étapes">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
+
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
-        <div formArrayName="steps" class="row col-md-4" *ngFor="let steps of data.steps; let i=index">
+        <div formArrayName="stepsArray" class="row col-md-4" *ngFor="let step of steps; let i=index">
             <mat-form-field class="col-md-11">
-                <textarea matInput placeholder="Déscription {{ i + 1 }}" (value)="data.steps[i]"></textarea>
+                <textarea matInput [id]="step.id" placeholder="Déscription {{ i + 1 }}"
+                    [formControlName]="stepsArray[i]" [value]="step.description"></textarea>
             </mat-form-field>
-            <button class="col-md-1" type="button" mat-icon-button (click)="data.steps.splice(i, 1)"
+            <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
                 matTooltip="Supprimer une étape">
                 <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
@@ -51,27 +53,29 @@
     </form>
 
     <mat-form-field>
-        <textarea matInput placeholder="Objectif" ngModel name="goal" (value)="data.goal" required></textarea>
+        <textarea matInput placeholder="Objectif" [ngModel]="data.goal" name="goal" required></textarea>
     </mat-form-field>
 
     <mat-form-field>
-        <textarea matInput placeholder="Valeur ajoutée" ngModel name="addedValue" (value)="data.addedValue"
+        <textarea matInput placeholder="Valeur ajoutée" [ngModel]="data.addedValue" name="addedValue"
             required></textarea>
     </mat-form-field>
 
     <label for="materialsArray">
         Matériels
-        <button type="button" mat-icon-button (click)="data.materials.push('')"
+        <button type="button" mat-icon-button (click)="addMaterial({id : 'test', description : ''})"
             matTooltip="Ajouter un nouveau materiel">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
-    <form id="materialsArray" class="row" [formGroup]="materialsForm">
-        <div formArrayName="materials" class="row col-md-4" *ngFor="let material of data.materials; let i=index">
+
+    <form class="row" [formGroup]="materialsForm">
+        <div formArrayName="materialsArray" class="row col-md-4" *ngFor="let material of materials; let i=index">
             <mat-form-field class="col-md-11">
-                <input matInput placeholder="Déscription {{ i + 1 }}" (value)="data.materials[i]">
+                <input matInput [id]="material.id" placeholder="Déscription {{ i + 1 }}"
+                    [formControlName]="materialsArray[i]" [value]="material.description">
             </mat-form-field>
-            <button type="button" class="col-md-1" mat-icon-button (click)="data.materials.splice(i, 1)"
+            <button type="button" class="col-md-1" mat-icon-button (click)="removeMaterial(i)"
                 matTooltip="Supprimer un materiel">
                 <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
