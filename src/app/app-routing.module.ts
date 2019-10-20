@@ -8,7 +8,19 @@ import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'tool-box-sheets', component: ToolBoxSheetsComponent },
-  { path: 'tool-box-sheet', component: ToolBoxSheetComponent },
+  {
+    path: 'tool-box-sheet',
+    children: [
+      {
+        path: '',
+        component: ToolBoxSheetComponent
+      },
+      {
+        path: ':_id',
+        component: ToolBoxSheetComponent
+      },
+    ]
+  },
 ];
 
 @NgModule({

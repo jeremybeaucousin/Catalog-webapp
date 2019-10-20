@@ -3,7 +3,8 @@
         <mat-form-field matTooltip="Rechercher un mot ou une séquence dans les boites à outils" class="col-md-11">
             <input matInput placeholder="Filter">
         </mat-form-field>
-        <a mat-icon-button matTooltip="Ajouter une nouvelle boite à outil" class="col-md-1 add-icon">
+        <a mat-icon-button routerLink="/tool-box-sheet" routerLinkActive="active"
+            matTooltip="Ajouter une nouvelle boite à outil" class="col-md-1 add-icon">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </a>
     </div>
@@ -35,7 +36,8 @@
                 <a mat-icon-button matTooltip="Visualiser une boite à outil">
                     <fa-icon [icon]="['fas', 'search']"></fa-icon>
                 </a>
-                <a mat-icon-button matTooltip="Modifier une boite à outil">
+                <a mat-icon-button matTooltip="Modifier une boite à outil" [routerLink]="['/tool-box-sheet', row._id]"
+                    routerLinkActive="active">
                     <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                 </a>
                 <button mat-button mat-icon-button matTooltip="Supprimer une boite à outil" (click)="delete(row._id)">
