@@ -12,7 +12,8 @@ import {
   MatTooltipModule,
   MatOptionModule,
   MatSelectModule,
-  MatSliderModule
+  MatSliderModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,7 +28,7 @@ import { ToolBoxSheetsComponent } from './tool-box-sheets/tool-box-sheets.compon
 import { HomeComponent } from './home/home.component';
 import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
 import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
-import { CommonModule } from '@angular/common';
+import { DialogAppComponent } from './commons/dialog-app.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,13 @@ import { CommonModule } from '@angular/common';
     ToolBoxSheetsComponent,
     HomeComponent,
     ToolBoxSheetComponent,
-    ToolBoxSheetViewComponent
+    ToolBoxSheetViewComponent,
+    DialogAppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
@@ -53,6 +54,7 @@ import { CommonModule } from '@angular/common';
     MatOptionModule,
     MatSelectModule,
     MatSliderModule,
+    MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
@@ -60,7 +62,7 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [DialogAppComponent]
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

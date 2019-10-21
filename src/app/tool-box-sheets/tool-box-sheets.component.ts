@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
-import { MatPaginator, MatSort, MatInput, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatInput, MatSnackBar, MatTableDataSource, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { merge, of as observableOf } from 'rxjs';
@@ -9,6 +9,7 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { CatalogApiService } from '../catalog-api.service';
 
 import { ToolBoxSheet } from '../models/tool-box-sheet';
+import { DialogAppComponent } from '../commons/dialog-app.component';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -37,7 +38,8 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
 
   constructor(
     private catalogService: CatalogApiService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -73,22 +75,31 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
   }
 
   delete(_id: string) {
-    this.catalogService.deleteToolBoxSheets(_id).subscribe(
-      result => {
-        var data = this.dataSource.data;
-        // Supress deleted element
-        var suppressesIndex = data.findIndex(function (element: any) {
-          return element._id == _id;
-        });
-        data.splice(suppressesIndex, 1);
-        this.paginator.length = (this.paginator.length - 1);
-        // Reload change
-        this.dataSource._updateChangeSubscription();
-        this._snackBar.open("Enregistrement supprimée", "fermer", {
-          // In seconds
-          duration: 3 * 1000,
-        });
+    const dialogRef = this.dialog.open(DialogAppComponent, {
+      width: '400px',
+      data: { message: "Voulez vous vraiment supprimer cette enregistrement ?" }
+    });
+
+    dialogRef.afterClosed().subscribe(validate => {
+      if (validate) {
+        this.catalogService.deleteToolBoxSheets(_id).subscribe(
+          result => {
+            var data = this.dataSource.data;
+            // Supress deleted element
+            var suppressesIndex = data.findIndex(function (element: any) {
+              return element._id == _id;
+            });
+            data.splice(suppressesIndex, 1);
+            this.paginator.length = (this.paginator.length - 1);
+            // Reload change
+            this.dataSource._updateChangeSubscription();
+            this._snackBar.open("Enregistrement supprimée", "fermer", {
+              // In seconds
+              duration: 3 * 1000,
+            });
+          }
+        );
       }
-    )
+    });
   }
 }

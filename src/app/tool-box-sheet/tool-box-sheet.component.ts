@@ -83,7 +83,6 @@ export class ToolBoxSheetComponent implements OnInit {
       if (this._id) {
         this.catalogService.getToolBoxSheetById(this._id).subscribe(
           (data) => {
-            console.log(data);
             if (data.steps) {
               data.steps.forEach((element, index) => {
                 this.addStep(element);
