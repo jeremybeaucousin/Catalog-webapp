@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, NgModel, NgForm, FormArray } from '@angular/for
 
 import { MatInput, MatSnackBar } from '@angular/material';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogApiService } from '../catalog-api.service';
 
 @Component({
@@ -61,6 +61,7 @@ export class ToolBoxSheetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private catalogService: CatalogApiService,
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar) {
@@ -120,13 +121,12 @@ export class ToolBoxSheetComponent implements OnInit {
       values.materials = materials;
     }
 
+
+
     if (this._id) {
       this.catalogService.editToolBoxSheet(this._id, values).subscribe(
         response => {
-          this._snackBar.open("Fiche mise à jour", "fermer", {
-            // In seconds
-            duration: 3 * 1000,
-          });
+          this.useSnackBarForSubmission("mise à jour");
         });
     } else {
       this.catalogService.addToolBoxSheet(values).subscribe(
@@ -134,11 +134,19 @@ export class ToolBoxSheetComponent implements OnInit {
           if (response._id) {
             this._id = response._id;
           }
-          this._snackBar.open("Fiche ajoutée", "fermer", {
-            // In seconds
-            duration: 3 * 1000,
-          });
+          this.useSnackBarForSubmission("ajoutée");
         });
     }
   }
+
+  useSnackBarForSubmission(actionType) {
+    this._snackBar.open(`Fiche ${actionType}, vous aller être redirigé vers la liste des boites à outil`, "fermer", {
+      // In seconds
+      duration: 3 * 1000,
+    }).afterDismissed().subscribe(
+      event => {
+        this.router.navigate(['/tool-box-sheets']);
+      }
+    );
+  };
 }
