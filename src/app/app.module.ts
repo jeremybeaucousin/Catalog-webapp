@@ -13,13 +13,21 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatSliderModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDividerModule
 } from '@angular/material';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faLinkedin, faFacebook, faViadeo } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faEdit, faTrash, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSearch,
+  faEdit,
+  faTrash,
+  faPlusCircle,
+  faUsers,
+  faClock
+} from '@fortawesome/free-solid-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +65,7 @@ import { DialogAppComponent } from './commons/dialog-app.component';
     MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDividerModule,
     NgbModule,
     FontAwesomeModule
   ],
@@ -74,5 +83,7 @@ export class AppModule {
     library.addIcons(faEdit);
     library.addIcons(faTrash);
     library.addIcons(faPlusCircle);
+    library.addIcons(faUsers);
+    library.addIcons(faClock);
   }
 }

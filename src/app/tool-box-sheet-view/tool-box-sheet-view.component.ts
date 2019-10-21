@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { CatalogApiService } from '../catalog-api.service';
+import { ToolBoxSheet } from '../models/tool-box-sheet';
 
 @Component({
   selector: 'app-tool-box-sheet-view',
@@ -11,7 +12,7 @@ export class ToolBoxSheetViewComponent implements OnInit {
 
   @Input() _id: string;
 
-  detail;
+  detail: ToolBoxSheet = new ToolBoxSheet();
 
   constructor(private catalogService: CatalogApiService) { }
 
