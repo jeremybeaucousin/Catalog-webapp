@@ -21,8 +21,8 @@ import { CatalogApiService } from '../catalog-api.service';
   ],
 })
 export class ToolBoxSheetsComponent implements AfterViewInit {
-  displayedColumns: string[] = ["_id", 'test', 'sortTest', "actions"];
-  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ["_id", 'title', 'description', "actions"];
+  dataSource: MatTableDataSource<ToolBoxSheet>;
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -65,7 +65,7 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
           return observableOf([]);
         })
       ).subscribe(data => {
-        var datasource = new MatTableDataSource(data as Array<any>);
+        var datasource = new MatTableDataSource(data as Array<ToolBoxSheet>);
         this.dataSource = datasource;
       });
   }

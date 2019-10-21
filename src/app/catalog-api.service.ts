@@ -77,7 +77,17 @@ export class CatalogApiService {
       map(response => {
         if (response.status == 200) {
           const totalCount = Number(response.headers.get(CatalogApiService.responseHeaders.totalCount));
-          return [totalCount, response.body];
+
+          var data: Array<ToolBoxSheet> = [];
+          var body = response.body as Array<any>;
+          if (body) {
+            body.forEach(element => {
+              var toolBoxSheet = element._source;
+              toolBoxSheet._id = element._id;
+              data.push(toolBoxSheet);
+            });
+          }
+          return [totalCount, data];
         } else {
           console.error(response.body);
           return [0, []];
