@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 import { environment } from './../environments/environment';
 
@@ -95,9 +95,10 @@ export class CatalogApiService {
           return [totalCount, data];
         } else {
           console.error(response.body);
-          return [0, []];
+          return [0, (response.body as any).message];
         }
-      }))
+      })
+    );
   }
 
   public getToolBoxSheetById(_id: string): Observable<any> {
@@ -117,15 +118,48 @@ export class CatalogApiService {
     );
   }
 
-  public addToolBoxSheet(data): Observable<any> {
-    return this.http.post(CatalogApiService.getToolBoxSheetsUri(), data);
+  public addToolBoxSheet(data): Observable<[boolean, any]> {
+    return this.http.post(CatalogApiService.getToolBoxSheetsUri(), data, { observe: 'response' }).pipe(
+      map(response => {
+        var body = response.body as any;
+        if (response.status == 201) {
+          console.debug(body);
+          var _id = "";
+          if (body) {
+            _id = body._id as any
+          }
+          return [true, _id];
+        } else {
+          console.error(body);
+          return [false, body];
+        }
+      }),
+      catchError(error => {
+        console.error(error);
+        return [false, error.message];
+      })
+    );
   }
 
-  public editToolBoxSheet(_id, data): Observable<any> {
-    return this.http.put(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, data);
+  public editToolBoxSheet(_id, data): Observable<[boolean, any]> {
+    return this.http.put(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, data, { observe: 'response' }).pipe(
+      map(response => {
+        var body = response.body as any;
+        if (response.status == 200) {
+          return [true, response.body];
+        } else {
+          console.error(body);
+          return [false, body];
+        }
+      }),
+      catchError(error => {
+        console.error(error);
+        return [false, error.message];
+      })
+    );
   }
 
   public deleteToolBoxSheets(_id: string) {
-    return this.http.delete(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`);
+    return this.http.delete(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, { observe: 'response' });
   }
 }

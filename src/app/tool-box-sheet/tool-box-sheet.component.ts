@@ -102,51 +102,71 @@ export class ToolBoxSheetComponent implements OnInit {
   }
 
   onSubmit(data: NgForm) {
+    var extractValuesToArray = (array: Array<any>, field: string) => {
+      if (array && field) {
+        var values: Array<string> = [];
+        array.forEach(
+          element => {
+            values.push(element[field]);
+          });
+        return values
+      }
+    }
     // Add Values from form array
     var values = data.value;
     if (this.steps && this.steps.value) {
-      var steps: Array<string> = [];
-      this.steps.value.forEach(
-        element => {
-          steps.push(element.description);
-        });
-      values.steps = steps;
+      values.steps = extractValuesToArray(this.steps.value, "description");
     }
 
     if (this.materials && this.materials.value) {
-      var materials: Array<string> = [];
-      this.materials.value.forEach(
-        element => {
-          materials.push(element.description);
-        });
-      values.materials = materials;
+      values.materials = extractValuesToArray(this.materials.value, "description");;
     }
-
-
 
     if (this._id) {
       this.catalogService.editToolBoxSheet(this._id, values).subscribe(
         response => {
-          this.useSnackBarForSubmission("mise à jour");
+          // catchError Error dont send tuple, only message
+          if (response && response instanceof Array) {
+            var success = response[0];
+            var result = response[1];
+            if (success) {
+              this.useSnackBarForSubmission(`Fiche mise à jour, vous aller être redirigé vers la liste des boites à outil`, true);
+            } else {
+              this.useSnackBarForSubmission(`Une erreur est survenue :  ${result}`, false);
+            }
+          } else {
+            this.useSnackBarForSubmission(`Une erreur est survenue :  ${response}`, false);
+          }
         });
     } else {
       this.catalogService.addToolBoxSheet(values).subscribe(
         response => {
-          if (response._id) {
-            this._id = response._id;
+          // catchError Error dont send tuple, only message
+          if (response && response instanceof Array) {
+            var success = response[0];
+            var result = response[1];
+            if (success) {
+              this._id = result;
+              this.useSnackBarForSubmission(`Fiche ajoutée, vous aller être redirigé vers la liste des boites à outil`, true);
+            } else {
+              this.useSnackBarForSubmission(`Une erreur est survenue :  ${result}`, false);
+            }
+          } else {
+            this.useSnackBarForSubmission(`Une erreur est survenue :  ${response}`, false);
           }
-          this.useSnackBarForSubmission("ajoutée");
         });
     }
   }
 
-  useSnackBarForSubmission(actionType) {
-    this._snackBar.open(`Fiche ${actionType}, vous aller être redirigé vers la liste des boites à outil`, "fermer", {
+  useSnackBarForSubmission(message: string, redirection: boolean) {
+    this._snackBar.open(message, "fermer", {
       // In seconds
       duration: 3 * 1000,
     }).afterDismissed().subscribe(
       event => {
-        this.router.navigate(['/tool-box-sheets']);
+        if (redirection) {
+          this.router.navigate(['/tool-box-sheets']);
+        }
       }
     );
   };
