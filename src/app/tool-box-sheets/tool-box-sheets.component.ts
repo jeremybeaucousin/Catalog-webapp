@@ -75,7 +75,7 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
       result => {
         var data = this.dataSource.data;
         // Supress deleted element
-        var suppressesIndex = data.findIndex(function (element) {
+        var suppressesIndex = data.findIndex(function (element: any) {
           return element._id == _id;
         });
         data.splice(suppressesIndex, 1);

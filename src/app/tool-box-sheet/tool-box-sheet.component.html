@@ -39,16 +39,22 @@
     </label>
 
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
-        <div formArrayName="stepsArray" class="row col-md-4" *ngFor="let step of steps; let i=index">
-            <mat-form-field class="col-md-11">
-                <textarea matInput name="{{i}}" formControlName="{{i}}" placeholder="Déscription {{ i + 1 }}"
-                    [formControl]="stepsArray[i]"></textarea>
-            </mat-form-field>
-            <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
-                matTooltip="Supprimer une étape">
-                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
-            </button>
+        <div formArrayName="steps" class="col-md-4"
+            *ngFor="let item of stepsForm.get('steps').controls; let i = index;">
+            <div class="row">
+                <div [formGroupName]="i" class="col-md-11">
+                    <mat-form-field>
+                        <textarea matInput formControlName="description"
+                            placeholder="Déscription {{ i + 1 }}"></textarea>
+                    </mat-form-field>
+                </div>
+                <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
+                    matTooltip="Supprimer une étape">
+                    <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+                </button>
+            </div>
         </div>
+
     </form>
 
     <mat-form-field>
@@ -67,7 +73,7 @@
         </button>
     </label>
 
-    <form class="row" [formGroup]="materialsForm">
+    <!-- <form class="row" [formGroup]="materialsForm">
         <div formArrayName="materialsArray" class="row col-md-4" *ngFor="let material of materials; let i=index">
             <mat-form-field class="col-md-11">
                 <input matInput placeholder="Déscription {{ i + 1 }}" formControlName="{{i}}" name="materials{{i}}"
@@ -78,7 +84,7 @@
                 <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
         </div>
-    </form>
+    </form> -->
 
     <button type="submit" class="save-button">
         Enregistrer
