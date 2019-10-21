@@ -21,7 +21,7 @@ import { CatalogApiService } from '../catalog-api.service';
   ],
 })
 export class ToolBoxSheetsComponent implements AfterViewInit {
-  displayedColumns: string[] = ["_id", 'title', 'description', "actions"];
+  displayedColumns: string[] = ['title', 'description', "actions"];
   dataSource: MatTableDataSource<ToolBoxSheet>;
 
   resultsLength = 0;
