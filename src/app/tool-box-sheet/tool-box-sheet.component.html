@@ -54,7 +54,6 @@
                 </button>
             </div>
         </div>
-
     </form>
 
     <mat-form-field>
@@ -73,20 +72,25 @@
         </button>
     </label>
 
-    <!-- <form class="row" [formGroup]="materialsForm">
-        <div formArrayName="materialsArray" class="row col-md-4" *ngFor="let material of materials; let i=index">
-            <mat-form-field class="col-md-11">
-                <input matInput placeholder="Déscription {{ i + 1 }}" formControlName="{{i}}" name="materials{{i}}"
-                    [formControl]="materialsArray[i]">
-            </mat-form-field>
-            <button type="button" class="col-md-1" mat-icon-button (click)="removeMaterial(i)"
-                matTooltip="Supprimer un materiel">
-                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
-            </button>
+    <form id="materialsArray" class="row" [formGroup]="materialsForm">
+        <div formArrayName="materials" class="col-md-4"
+            *ngFor="let item of materialsForm.get('materials').controls; let i = index;">
+            <div class="row">
+                <div [formGroupName]="i" class="col-md-11">
+                    <mat-form-field>
+                        <textarea matInput formControlName="description"
+                            placeholder="Déscription {{ i + 1 }}"></textarea>
+                    </mat-form-field>
+                </div>
+                <button class="col-md-1" type="button" mat-icon-button (click)="removeMaterial(i)"
+                    matTooltip="Supprimer un matériel">
+                    <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+                </button>
+            </div>
         </div>
-    </form> -->
+    </form>
 
-    <button type="submit" class="save-button">
+    <button type="submit" mat-stroked-button color="primary" class="save-button">
         Enregistrer
     </button>
 </form>
