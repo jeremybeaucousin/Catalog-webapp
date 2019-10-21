@@ -1,4 +1,4 @@
-class ToolBoxSheet {
+export class ToolBoxSheet {
     _id: string
     title: string
     numPersonMin: number

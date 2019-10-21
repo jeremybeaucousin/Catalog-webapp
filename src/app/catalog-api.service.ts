@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 
 import { environment } from './../environments/environment';
 
+import { ToolBoxSheet } from './models/tool-box-sheet';
+
 // Override default encoding to handle '+' and '-'
 class CustomEncoder implements HttpParameterCodec {
   encodeKey(key: string): string {
@@ -48,6 +50,11 @@ export class CatalogApiService {
     return `${environment.catalogApiEndploint}${CatalogApiService.toolBoxRoute}`;
   }
 
+  private static transormToToolBoxSheets(element: any) {
+    var toolBoxSheet: ToolBoxSheet = (element._source) ? element._source : {};
+    toolBoxSheet._id = element._id;
+    return toolBoxSheet;
+  }
 
   public getToolBoxSheets(
     offset: number,
@@ -82,9 +89,7 @@ export class CatalogApiService {
           var body = response.body as Array<any>;
           if (body) {
             body.forEach(element => {
-              var toolBoxSheet = element._source;
-              toolBoxSheet._id = element._id;
-              data.push(toolBoxSheet);
+              data.push(CatalogApiService.transormToToolBoxSheets(element));
             });
           }
           return [totalCount, data];
@@ -96,7 +101,20 @@ export class CatalogApiService {
   }
 
   public getToolBoxSheetById(_id: string): Observable<any> {
-    return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`);
+    return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, { observe: 'response' }).pipe(
+      map(response => {
+        var body = response.body;
+        if (response.status == 200) {
+          var toolBoxSheet: ToolBoxSheet = new ToolBoxSheet();
+          if (body) {
+            toolBoxSheet = CatalogApiService.transormToToolBoxSheets(body);
+          }
+          return toolBoxSheet;
+        } else {
+          console.error(body);
+        }
+      })
+    );
   }
 
   public addToolBoxSheet(data): Observable<any> {

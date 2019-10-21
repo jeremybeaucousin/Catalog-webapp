@@ -82,18 +82,19 @@ export class ToolBoxSheetComponent implements OnInit {
       this._id = params['_id'];
       if (this._id) {
         this.catalogService.getToolBoxSheetById(this._id).subscribe(
-          (response) => {
-            if (response._source.steps) {
-              response._source.steps.forEach((element, index) => {
+          (data) => {
+            console.log(data);
+            if (data.steps) {
+              data.steps.forEach((element, index) => {
                 this.addStep(element);
               });
             }
-            if (response._source.materials) {
-              response._source.materials.forEach((element, index) => {
+            if (data.materials) {
+              data.materials.forEach((element, index) => {
                 this.addMaterial(element);
               });
             }
-            this.data = response._source;
+            this.data = data;
           }
         );
       }

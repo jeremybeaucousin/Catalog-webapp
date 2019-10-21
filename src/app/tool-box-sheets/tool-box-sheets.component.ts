@@ -8,6 +8,8 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 import { CatalogApiService } from '../catalog-api.service';
 
+import { ToolBoxSheet } from '../models/tool-box-sheet';
+
 @Component({
   selector: 'app-tool-box-sheets',
   templateUrl: './tool-box-sheets.component.html',
