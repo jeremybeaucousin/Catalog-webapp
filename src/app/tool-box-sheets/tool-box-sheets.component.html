@@ -63,5 +63,7 @@
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
 
-    <mat-paginator [length]="resultsLength" [pageSize]="10"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [showFirstLastButtons]="true" [pageSizeOptions]="[10, 20, 30, 50, 100, 200]"
+        [pageSize]="10">
+    </mat-paginator>
 </div>

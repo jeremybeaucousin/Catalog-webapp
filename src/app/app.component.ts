@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Catalog-webapp';
+
+  constructor(
+    @Inject(LOCALE_ID) public locale: string,
+    translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang(locale);
+    translate.use(locale);
+  }
 }

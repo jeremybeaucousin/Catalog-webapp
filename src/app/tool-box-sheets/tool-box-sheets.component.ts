@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MatPaginator, MatSort, MatInput, MatTableDataSource, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -11,6 +12,7 @@ import { CatalogApiService } from '../services/catalog-api.service';
 import { ToolBoxSheet } from '../models/tool-box-sheet';
 import { DialogAppComponent } from '../commons/dialog-app.component';
 import { SnackBarAppService } from '../services/snack-bar-app.services';
+import { MatPaginatorTranslator } from '../models/mat-paginator-translator';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -40,8 +42,12 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
   constructor(
     private catalogService: CatalogApiService,
     private _snackBar: SnackBarAppService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private translate: TranslateService) {
+  }
+
   ngAfterViewInit() {
+    this.paginator._intl = new MatPaginatorTranslator(this.translate);
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     merge(this.sort.sortChange, this.paginator.page, this.matInput.stateChanges)
