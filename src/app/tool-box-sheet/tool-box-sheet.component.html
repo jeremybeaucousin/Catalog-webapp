@@ -6,14 +6,18 @@
 
     <div class="form-group row range-time">
         <div class=col-md-4>
-            <label for="numPersonMin">Nombre de personne minimal</label>
+            <label for="numPersonMin"
+                i18n="Label for numPersonMin field in toolbox form@@toolBoxFormFieldNumPersonMinLabel">Nombre de
+                personne minimal</label>
             <mat-slider id="numPersonMin" matInput [ngModel]="data.numPersonMin" name="numPersonMin" max="30" min="1"
                 step="1" thumbLabel="true" required>
             </mat-slider>
         </div>
 
         <div class=col-md-4>
-            <label for="numPersonMax">Nombre de personne maximal</label>
+            <label for="numPersonMax"
+                i18n="Label for numPersonMax field in toolbox form@@toolBoxFormFieldNumPersonMaxLabel">Nombre de
+                personne maximal</label>
             <mat-slider id="numPersonMax" matInput [ngModel]="data.numPersonMax" name="numPersonMax" max="30" min="1"
                 step="1" thumbLabel="true" required>
             </mat-slider>
@@ -33,7 +37,7 @@
     </mat-form-field>
 
     <label for="stepsArray">
-        Les étapes
+        <span i18n="Label for step field in toolbox form@@toolBoxFormFieldStepLabel">Les étapes</span>
         <button type="button" mat-icon-button (click)="addStep('')"
             i18n-matTooltip="Add Step button in toolbox form@@toolBoxFormButtonAddStep"
             matTooltip="Ajouter une nouvelle étapes">
@@ -71,7 +75,7 @@
     </mat-form-field>
 
     <label for="materialsArray">
-        Matériels
+        <span i18n="Label for material field in toolbox form@@toolBoxFormFieldMaterialLabel">Matériels</span>
         <button type="button" mat-icon-button (click)="addMaterial('')"
             i18n-matTooltip="Add Material button in toolbox form@@toolBoxFormButtonAddMaterial"
             matTooltip="Ajouter un nouveau materiel">

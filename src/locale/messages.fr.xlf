@@ -349,6 +349,15 @@
         </context-group>
         <note priority="1" from="description">Tooltip for toolbox delete</note>
       </trans-unit>
+          <trans-unit id="homeSiteTitle" datatype="html">
+        <source>Bienvenue !</source>
+        <target>Bienvenue !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Label for home site Title</note>
+      </trans-unit>
       <trans-unit id="homeSiteDescription" datatype="html">
         <source>Ce site vous permet de consulter les
         catalogues de formation et de boite à outils dispensés par
@@ -382,6 +391,28 @@
         </context-group>
         <note priority="1" from="description">Title field in toolbox form</note>
       </trans-unit>
+      <trans-unit id="toolBoxFormFieldNumPersonMinLabel" datatype="html">
+        <source>Nombre de
+                personne minimal</source>
+        <target>Nombre de
+                personne minimal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">Label for numPersonMin field in toolbox form</note>
+      </trans-unit>
+      <trans-unit id="toolBoxFormFieldNumPersonMaxLabel" datatype="html">
+        <source>Nombre de
+                personne maximal</source>
+            <target>Nombre de
+                personne maximal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">Label for numPersonMax field in toolbox form</note>
+      </trans-unit>
       <trans-unit id="toolBoxFormFieldEventDuration" datatype="html">
         <source>Durée</source>
         <target>Durée</target>
@@ -399,6 +430,15 @@
           <context context-type="linenumber">31</context>
         </context-group>
         <note priority="1" from="description">Description field in toolbox form</note>
+      </trans-unit>
+          <trans-unit id="toolBoxFormFieldStepLabel" datatype="html">
+        <source>Les étapes</source>
+        <target>Les étapes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Label for step field in toolbox form</note>
       </trans-unit>
       <trans-unit id="toolBoxFormButtonAddStep" datatype="html">
         <source>Ajouter une nouvelle étapes</source>
@@ -448,6 +488,15 @@
           <context context-type="linenumber">69</context>
         </context-group>
         <note priority="1" from="description">Added value field in toolbox form</note>
+      </trans-unit>
+       <trans-unit id="toolBoxFormFieldMaterialLabel" datatype="html">
+        <source>Matériels</source>
+        <target>Matériels</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <note priority="1" from="description">Label for material field in toolbox form</note>
       </trans-unit>
       <trans-unit id="toolBoxFormButtonAddMaterial" datatype="html">
         <source>Ajouter un nouveau materiel</source>
