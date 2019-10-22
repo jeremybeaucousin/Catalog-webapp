@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
-import { MatPaginator, MatSort, MatInput, MatSnackBar, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatPaginator, MatSort, MatInput, MatTableDataSource, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { merge, of as observableOf } from 'rxjs';
@@ -10,6 +10,7 @@ import { CatalogApiService } from '../services/catalog-api.service';
 
 import { ToolBoxSheet } from '../models/tool-box-sheet';
 import { DialogAppComponent } from '../commons/dialog-app.component';
+import { SnackBarAppService } from '../services/snack-bar-app.services';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -38,7 +39,7 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
 
   constructor(
     private catalogService: CatalogApiService,
-    private _snackBar: MatSnackBar,
+    private _snackBar: SnackBarAppService,
     public dialog: MatDialog) { }
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.

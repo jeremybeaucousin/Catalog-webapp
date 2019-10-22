@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-
-import { MatSnackBar } from '@angular/material';
+import { catchError } from 'rxjs/operators';
 
 import { CatalogApiService } from './services/catalog-api.service';
 import { SnackBarAppService } from './services/snack-bar-app.services';
@@ -20,7 +18,8 @@ export class RequestInterceptor implements HttpInterceptor {
             return next.handle(
                 req.clone(
                     {
-                        headers: req.headers.append('Authorization', 'Bearer ' + "testToken")
+                        // 
+                        headers: req.headers.append('test', 'Bearer ' + " testToken")
                     }
                 )).pipe(
                     catchError((error: HttpErrorResponse) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, NgForm, FormArray } from '@angular/forms';
 
-import { MatInput, MatSnackBar } from '@angular/material';
+import { MatInput } from '@angular/material';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogApiService } from '../services/catalog-api.service';
