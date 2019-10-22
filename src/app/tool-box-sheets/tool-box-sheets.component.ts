@@ -78,7 +78,11 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
   delete(_id: string) {
     const dialogRef = this.dialog.open(DialogAppComponent, {
       width: '400px',
-      data: { message: "Voulez vous vraiment supprimer cette enregistrement ?" }
+      data: {
+        cancelLabel: "Non",
+        confirmationLabel: "Oui",
+        message: "Voulez vous vraiment supprimer cette enregistrement ?"
+      }
     });
 
     dialogRef.afterClosed().subscribe(validate => {
