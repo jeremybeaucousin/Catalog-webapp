@@ -5,5 +5,9 @@
     "FIRST_PAGE_LABEL": "Première Page",
     "LAST_PAGE_LABEL": "Dérnière Page",
     "RANGE_PAGE_LABEL_1": "0 sur {{length}}",
-    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} sur {{length}}"
+    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} sur {{length}}",
+    "MODAL_CONFIRMATION_TITLE": "Confirmation !",
+    "MODAL_CONFIRMATION_MESSAGE": "Voulez vous vraiment supprimer cette enregistrement ?",
+    "MODAL_CONFIRMATION_CONFIRMATION_BUTTON": "Oui",
+    "MODAL_CONFIRMATION_CANCEL_BUTTON": "Non"
 }

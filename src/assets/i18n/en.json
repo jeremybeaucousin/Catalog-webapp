@@ -5,5 +5,9 @@
     "FIRST_PAGE_LABEL": "First Page",
     "LAST_PAGE_LABEL": "Last Page",
     "RANGE_PAGE_LABEL_1": "0 of {{length}}",
-    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
+    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}",
+    "MODAL_CONFIRMATION_TITLE": "Confirmation !",
+    "MODAL_CONFIRMATION_MESSAGE": "You really want to delete this items ?",
+    "MODAL_CONFIRMATION_CONFIRMATION_BUTTON": "Yes",
+    "MODAL_CONFIRMATION_CANCEL_BUTTON": "No"
 }

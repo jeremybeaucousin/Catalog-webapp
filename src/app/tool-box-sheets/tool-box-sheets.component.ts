@@ -13,6 +13,7 @@ import { ToolBoxSheet } from '../models/tool-box-sheet';
 import { DialogAppComponent } from '../commons/dialog-app.component';
 import { SnackBarAppService } from '../services/snack-bar-app.services';
 import { MatPaginatorTranslator } from '../models/mat-paginator-translator';
+import { TranslationKeysConstants } from '../models/translation-keys.constants';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -85,9 +86,10 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(DialogAppComponent, {
       width: '400px',
       data: {
-        cancelLabel: "Non",
-        confirmationLabel: "Oui",
-        message: "Voulez vous vraiment supprimer cette enregistrement ?"
+        title: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_TITLE),
+        cancelLabel: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_CANCEL_BUTTON),
+        confirmationLabel: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_CONFIRMATION_BUTTON),
+        message: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_MESSAGE)
       }
     });
 
