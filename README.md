@@ -37,23 +37,44 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 > ng generate component xyz
 
 ## Build for production
-> ng build --prod
+> ng build --prod --i18n-file src/locale/messages.fr.xlf --i18n-format xlf --i18n-locale fr
+With configured langage
+> ng build --prod --configuration=fr
+
+whith base href
+> ng build --prod --configuration=fr --bh /fr/
 
 ## Nginx
 ### Docker
 Create container : 
 
+> docker run --name catalog-webapp-nginx -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\conf\catalog-webapp.conf:/etc/nginx/conf.d/default.conf" -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\project\:/Catalog-webapp/" -p "4300:80" -d nginx
+
 Example of configuration file :
 ```
 server {
-    listen       80;
-    server_name  localhost;
-    root   /Catalog-webapp/Catalog-webapp;
-    
+    add_header 'Access-Control-Allow-Origin' "*";
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
+    add_header 'Access-Control-Allow-Credentials' 'false';
+    add_header 'Access-Control-Allow-Headers' '*';
 
-    location / {
-        try_files $uri $uri/ /index.html;
+    listen 80;
+    server_name localhost;
+
+    location /en/ {
+        alias /Catalog-webapp/en/;
+        try_files $uri $uri/ /en/index.html;
     }
-}
+
+    location /fr/ {
+        alias /Catalog-webapp/fr/;
+        try_files $uri $uri/ /fr/index.html;
+    }
+
+    # Default to FR
+    location / {
+        alias /Catalog-webapp/fr/;
+        try_files $uri $uri/ /fr/index.html;
+    }
+}    
 ```
-> docker run --name catalog-webapp-nginx -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\conf\catalog-webapp.conf:/etc/nginx/conf.d/default.conf" -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\project\:/Catalog-webapp/" -p "4300:80" -d nginx
