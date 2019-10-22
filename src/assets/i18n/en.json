@@ -8,6 +8,12 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}",
     "MODAL_CONFIRMATION_TITLE": "Confirmation !",
     "MODAL_CONFIRMATION_MESSAGE": "You really want to delete this items ?",
-    "MODAL_CONFIRMATION_CONFIRMATION_BUTTON": "Yes",
-    "MODAL_CONFIRMATION_CANCEL_BUTTON": "No"
+    "TOOL_BOX": "Toolbox",
+    "TOOL_BOXES_PAGE": "Toolboxes list",
+    "ITEM_SAVED_REDIRECTION": "{{item}} saved, you will be redirect to {{pageName}}",
+    "ITEM_DELETED": "Item deleted",
+    "YES": "Yes",
+    "NO": "No",
+    "ERROR_GENERAL_MESSAGE": "An error occured : {{message}}",
+    "CLOSE": "Close"
 }

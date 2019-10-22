@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, NgForm, FormArray } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MatInput } from '@angular/material';
 
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogApiService } from '../services/catalog-api.service';
 import { SnackBarAppService } from '../services/snack-bar-app.services';
 import { ToolBoxSheet } from '../models/tool-box-sheet';
+import { TranslationKeysConstants } from '../models/translation-keys.constants';
 
 @Component({
   selector: 'app-tool-box-sheet',
@@ -74,7 +76,8 @@ export class ToolBoxSheetComponent implements OnInit {
     private router: Router,
     private catalogService: CatalogApiService,
     private formBuilder: FormBuilder,
-    private _snackBar: SnackBarAppService) {
+    private _snackBar: SnackBarAppService,
+    private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -140,12 +143,17 @@ export class ToolBoxSheetComponent implements OnInit {
             var success = response[0];
             var result = response[1];
             if (success) {
-              this.useSnackBarForSubmission(`Fiche mise à jour, vous aller être redirigé vers la liste des boites à outil`, true);
+              const item = this.translate.instant(TranslationKeysConstants.TOOL_BOX);
+              const page = this.translate.instant(TranslationKeysConstants.TOOL_BOXES_PAGE);
+              const message = this.translate.instant(TranslationKeysConstants.ITEM_SAVED_REDIRECTION, { item: item, pageName: page });
+              this.useSnackBarForSubmission(message, true);
             } else {
-              this.useSnackBarForSubmission(`Une erreur est survenue :  ${result}`, false);
+              const message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: result });
+              this.useSnackBarForSubmission(message, false);
             }
           } else {
-            this.useSnackBarForSubmission(`Une erreur est survenue :  ${response}`, false);
+            const message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: response });
+            this.useSnackBarForSubmission(message, false);
           }
         });
     } else {
@@ -157,24 +165,32 @@ export class ToolBoxSheetComponent implements OnInit {
             var result = response[1];
             if (success) {
               this._id = result;
-              this.useSnackBarForSubmission(`Fiche ajoutée, vous aller être redirigé vers la liste des boites à outil`, true);
+              const item = this.translate.instant(TranslationKeysConstants.TOOL_BOX);
+              const page = this.translate.instant(TranslationKeysConstants.TOOL_BOXES_PAGE);
+              const message = this.translate.instant(TranslationKeysConstants.ITEM_SAVED_REDIRECTION, { item: item, pageName: page });
+              this.useSnackBarForSubmission(message, true);
             } else {
-              this.useSnackBarForSubmission(`Une erreur est survenue :  ${result}`, false);
+              const message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: result });
+              this.useSnackBarForSubmission(message, false);
             }
           } else {
-            this.useSnackBarForSubmission(`Une erreur est survenue :  ${response}`, false);
+            const message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: response });
+            this.useSnackBarForSubmission(message, false);
           }
         });
     }
   }
 
   useSnackBarForSubmission(message: string, redirection: boolean) {
-    this._snackBar.open(message, "fermer", {
+    const close = this.translate.instant(TranslationKeysConstants.CLOSE);
+    this._snackBar.open(message, close, {
       // In seconds
       duration: 3 * 1000,
     }).afterDismissed().subscribe(
       event => {
-        this.router.navigate(['tool-box-sheets']);
+        if (redirection) {
+          this.router.navigate(['tool-box-sheets']);
+        }
       });
   };
 }

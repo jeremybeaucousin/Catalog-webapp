@@ -87,8 +87,8 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
       width: '400px',
       data: {
         title: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_TITLE),
-        cancelLabel: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_CANCEL_BUTTON),
-        confirmationLabel: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_CONFIRMATION_BUTTON),
+        cancelLabel: this.translate.instant(TranslationKeysConstants.NO),
+        confirmationLabel: this.translate.instant(TranslationKeysConstants.YES),
         message: this.translate.instant(TranslationKeysConstants.MODAL_CONFIRMATION_MESSAGE)
       }
     });
@@ -106,7 +106,9 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
             this.paginator.length = (this.paginator.length - 1);
             // Reload change
             this.dataSource._updateChangeSubscription();
-            this._snackBar.open("Enregistrement supprimée", "fermer", {
+            const message = this.translate.instant(TranslationKeysConstants.ITEM_DELETED);
+            const close = this.translate.instant(TranslationKeysConstants.CLOSE);
+            this._snackBar.open(message, close, {
               // In seconds
               duration: 3 * 1000,
             });

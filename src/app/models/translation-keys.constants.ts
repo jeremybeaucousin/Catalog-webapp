@@ -6,10 +6,14 @@ export class TranslationKeysConstants {
     static readonly LAST_PAGE_LABEL: string = "LAST_PAGE_LABEL";
     static readonly RANGE_PAGE_LABEL_1: string = "RANGE_PAGE_LABEL_1";
     static readonly RANGE_PAGE_LABEL_2: string = "RANGE_PAGE_LABEL_2";
-    static readonly MODAL_CONFIRMATION_TITLE = "MODAL_CONFIRMATION_TITLE";
-    static readonly MODAL_CONFIRMATION_MESSAGE = "MODAL_CONFIRMATION_MESSAGE";
-    static readonly MODAL_CONFIRMATION_CONFIRMATION_BUTTON = "MODAL_CONFIRMATION_CONFIRMATION_BUTTON";
-    static readonly MODAL_CONFIRMATION_CANCEL_BUTTON = "MODAL_CONFIRMATION_CANCEL_BUTTON";
-
-
+    static readonly MODAL_CONFIRMATION_TITLE: string = "MODAL_CONFIRMATION_TITLE";
+    static readonly MODAL_CONFIRMATION_MESSAGE: string = "MODAL_CONFIRMATION_MESSAGE";
+    static readonly TOOL_BOX: string = "TOOL_BOX";
+    static readonly TOOL_BOXES_PAGE: string = "TOOL_BOXES_PAGE";
+    static readonly ITEM_SAVED_REDIRECTION: string = "ITEM_SAVED_REDIRECTION";
+    static readonly ITEM_DELETED: string = "ITEM_DELETED";
+    static readonly YES: string = "YES";
+    static readonly NO: string = "NO";
+    static readonly ERROR_GENERAL_MESSAGE: string = "ERROR_GENERAL_MESSAGE";
+    static readonly CLOSE: string = "CLOSE";
 }
