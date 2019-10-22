@@ -1,6 +1,7 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" validate>
     <mat-form-field>
-        <input matInput [ngModel]="data.title" name="title" placeholder="Titre" required>
+        <input matInput [ngModel]="data.title" name="title" placeholder="Titre"
+            i18n-placeholder="Title field in toolbox form@@toolBoxFormFieldTitle" required>
     </mat-form-field>
 
     <div class="form-group row range-time">
@@ -21,19 +22,21 @@
         <div class=col-md-4>
             <mat-form-field>
                 <input type="time" matInput [ngModel]="data.eventDuration" name="eventDuration" placeholder="Durée"
-                    required />
+                    i18n-placeholder="Event duration field in toolbox form@@toolBoxFormFieldEventDuration" required />
             </mat-form-field>
         </div>
     </div>
 
     <mat-form-field>
         <textarea matInput placeholder="Résumé de la pratique" [ngModel]="data.description" name="description"
-            required></textarea>
+            i18n-placeholder="Description field in toolbox form@@toolBoxFormFieldDescription" required></textarea>
     </mat-form-field>
 
     <label for="stepsArray">
         Les étapes
-        <button type="button" mat-icon-button (click)="addStep('')" matTooltip="Ajouter une nouvelle étapes">
+        <button type="button" mat-icon-button (click)="addStep('')"
+            i18n-matTooltip="Add Step button in toolbox form@@toolBoxFormButtonAddStep"
+            matTooltip="Ajouter une nouvelle étapes">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
@@ -44,10 +47,12 @@
                 <div [formGroupName]="i" class="col-md-11">
                     <mat-form-field>
                         <textarea matInput formControlName="description"
-                            placeholder="Déscription {{ i + 1 }}"></textarea>
+                            i18n-placeholder="Steps field in toolbox form@@toolBoxFormFieldStepsDescription"
+                            placeholder="Etape {{ i + 1 }}"></textarea>
                     </mat-form-field>
                 </div>
                 <button class="col-md-1" type="button" mat-icon-button (click)="removeStep(i)"
+                    i18n-matTooltip="Remove Step button in toolbox form@@toolBoxFormButtonRemoveMaterial"
                     matTooltip="Supprimer une étape">
                     <fa-icon [icon]="['fas', 'trash']"></fa-icon>
                 </button>
@@ -56,17 +61,20 @@
     </form>
 
     <mat-form-field>
-        <textarea matInput placeholder="Objectif" [ngModel]="data.goal" name="goal" required></textarea>
+        <textarea matInput placeholder="Objectif" [ngModel]="data.goal" name="goal"
+            i18n-placeholder="Goal field in toolbox form@@toolBoxFormFieldGoal" required></textarea>
     </mat-form-field>
 
     <mat-form-field>
         <textarea matInput placeholder="Valeur ajoutée" [ngModel]="data.addedValue" name="addedValue"
-            required></textarea>
+            i18n-placeholder="Added value field in toolbox form@@toolBoxFormFieldAddedValue" required></textarea>
     </mat-form-field>
 
     <label for="materialsArray">
         Matériels
-        <button type="button" mat-icon-button (click)="addMaterial('')" matTooltip="Ajouter un nouveau materiel">
+        <button type="button" mat-icon-button (click)="addMaterial('')"
+            i18n-matTooltip="Add Material button in toolbox form@@toolBoxFormButtonAddMaterial"
+            matTooltip="Ajouter un nouveau materiel">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </button>
     </label>
@@ -77,10 +85,12 @@
                 <div [formGroupName]="i" class="col-md-11">
                     <mat-form-field>
                         <textarea matInput formControlName="description"
-                            placeholder="Déscription {{ i + 1 }}"></textarea>
+                            i18n-placeholder="Materials field in toolbox form@@toolBoxFormFieldMaterialsDescription"
+                            placeholder="Matériel {{ i + 1 }}"></textarea>
                     </mat-form-field>
                 </div>
                 <button class="col-md-1" type="button" mat-icon-button (click)="removeMaterial(i)"
+                    i18n-matTooltip="Remove Material button in toolbox form@@toolBoxFormButtonRemoveMaterial"
                     matTooltip="Supprimer un matériel">
                     <fa-icon [icon]="['fas', 'trash']"></fa-icon>
                 </button>
@@ -88,7 +98,8 @@
         </div>
     </form>
 
-    <button type="submit" mat-stroked-button color="primary" class="save-button">
+    <button type="submit" mat-stroked-button color="primary" class="save-button"
+        i18n="RSave button in toolbox form@@toolBoxFormButtonSave">
         Enregistrer
     </button>
 </form>
