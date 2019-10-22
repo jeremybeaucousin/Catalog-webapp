@@ -13,7 +13,9 @@ export class AppComponent {
     @Inject(LOCALE_ID) public locale: string,
     translate: TranslateService) {
     translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang(locale);
-    translate.use(locale);
+    translate.setDefaultLang("fr");
+    if (translate.getLangs().includes(locale)) {
+      translate.use(locale);
+    }
   }
 }
