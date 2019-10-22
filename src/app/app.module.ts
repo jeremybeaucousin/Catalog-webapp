@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   MatTableModule,
   MatPaginatorModule,
@@ -37,6 +37,7 @@ import { HomeComponent } from './home/home.component';
 import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
 import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
 import { DialogAppComponent } from './commons/dialog-app.component';
+import { RequestInterceptor } from './request-interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,9 @@ import { DialogAppComponent } from './commons/dialog-app.component';
     NgbModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DialogAppComponent]
 })
