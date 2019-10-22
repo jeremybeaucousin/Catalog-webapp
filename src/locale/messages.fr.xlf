@@ -304,6 +304,15 @@
         </context-group>
         <note priority="1" from="description">Label for footer rights</note>
       </trans-unit>
+            <trans-unit id="toolBoxesFieldSearchLabel" datatype="html">
+        <source>Filtre</source>
+        <target>Filtre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Label for search field in toolboxes form</note>
+      </trans-unit>
       <trans-unit id="toolTipToolBoxesSearch" datatype="html">
         <source>Rechercher un mot ou une séquence dans les boites à outils</source>
         <target>Rechercher un mot ou une séquence dans les boites à outils</target>
@@ -321,6 +330,35 @@
           <context context-type="linenumber">9</context>
         </context-group>
         <note priority="1" from="description">Tooltip for toolbox add</note>
+      </trans-unit>
+       <trans-unit id="toolBoxesColumnTitleTitle" datatype="html">
+        <source>Titre</source>
+        <target>Titre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Label for column title title</note>
+      </trans-unit>
+      <trans-unit id="toolBoxesColumnDescriptionTitle" datatype="html">
+        <source>Déscription</source>
+        <target>Déscription</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">Label for column description title</note>
+      </trans-unit>
+      <trans-unit id="toolBoxesColumnActionsTitle" datatype="html">
+        <source>
+                Actions</source>
+        <target>
+                Actions</target>                
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">Label for column actions title</note>
       </trans-unit>
       <trans-unit id="toolTipToolBoxesView" datatype="html">
         <source>Visualiser une boite à outil, en travaux !</source>
