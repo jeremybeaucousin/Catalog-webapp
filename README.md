@@ -38,3 +38,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Build for production
 > ng build --prod
+
+## Nginx
+### Docker
+Create container : 
+
+Example of configuration file :
+```
+server {
+    listen       80;
+    server_name  localhost;
+    root   /Catalog-webapp/Catalog-webapp;
+    
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+> docker run --name catalog-webapp-nginx -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\conf\catalog-webapp.conf:/etc/nginx/conf.d/default.conf" -v "C:\Users\a\DockerVolume\Catalog-webapp\nginx\project\:/Catalog-webapp/" -p "4300:80" -d nginx
