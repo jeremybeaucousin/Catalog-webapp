@@ -6,6 +6,7 @@ import { MatInput } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogApiService } from '../services/catalog-api.service';
 import { SnackBarAppService } from '../services/snack-bar-app.services';
+import { ToolBoxSheet } from '../models/tool-box-sheet';
 
 @Component({
   selector: 'app-tool-box-sheet',
@@ -16,7 +17,7 @@ export class ToolBoxSheetComponent implements OnInit {
 
   _id?: string;
 
-  data = {};
+  data: ToolBoxSheet = new ToolBoxSheet();
 
   // Steps form
   stepsForm: FormGroup;
@@ -28,13 +29,17 @@ export class ToolBoxSheetComponent implements OnInit {
     });
   }
 
+  get stepsArray(): FormArray {
+    return this.stepsForm.get('steps') as FormArray;
+  }
+
   addStep(value): void {
-    this.steps = this.stepsForm.get('steps') as FormArray;
+    this.steps = this.stepsArray;
     this.steps.push(this.createStep(value));
   }
 
   removeStep(index): void {
-    this.steps = this.stepsForm.get('steps') as FormArray;
+    this.steps = this.stepsArray;
     this.steps.removeAt(index);
   }
 
@@ -48,14 +53,18 @@ export class ToolBoxSheetComponent implements OnInit {
     });
   }
 
+  get materialsArray(): FormArray {
+    return this.materialsForm.get('materials') as FormArray;
+  }
+
   addMaterial(value): void {
-    this.materials = this.materialsForm.get('materials') as FormArray;
+    this.materials = this.materialsArray;
     this.materials.push(this.createMaterial(value));
   }
 
   removeMaterial(index): void {
-    this.steps = this.materialsForm.get('materials') as FormArray;
-    this.steps.removeAt(index);
+    this.materials = this.materialsArray;
+    this.materials.removeAt(index);
   }
 
   @ViewChild(MatInput, { static: false }) matInput: MatInput;
@@ -114,6 +123,7 @@ export class ToolBoxSheetComponent implements OnInit {
     }
     // Add Values from form array
     var values = data.value;
+    console.log(this.steps);
     if (this.steps && this.steps.value) {
       values.steps = extractValuesToArray(this.steps.value, "description");
     }
@@ -162,6 +172,9 @@ export class ToolBoxSheetComponent implements OnInit {
     this._snackBar.open(message, "fermer", {
       // In seconds
       duration: 3 * 1000,
-    });
+    }).afterDismissed().subscribe(
+      event => {
+        this.router.navigate(['tool-box-sheets']);
+      });
   };
 }

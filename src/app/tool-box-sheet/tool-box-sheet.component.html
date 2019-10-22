@@ -39,8 +39,7 @@
     </label>
 
     <form id="stepsArray" class="row" [formGroup]="stepsForm">
-        <div formArrayName="steps" class="col-md-4"
-            *ngFor="let item of stepsForm.get('steps').controls; let i = index;">
+        <div formArrayName="steps" class="col-md-4" *ngFor="let item of stepsArray.controls; let i = index;">
             <div class="row">
                 <div [formGroupName]="i" class="col-md-11">
                     <mat-form-field>
@@ -73,8 +72,7 @@
     </label>
 
     <form id="materialsArray" class="row" [formGroup]="materialsForm">
-        <div formArrayName="materials" class="col-md-4"
-            *ngFor="let item of materialsForm.get('materials').controls; let i = index;">
+        <div formArrayName="materials" class="col-md-4" *ngFor="let item of materialsArray.controls; let i = index;">
             <div class="row">
                 <div [formGroupName]="i" class="col-md-11">
                     <mat-form-field>
