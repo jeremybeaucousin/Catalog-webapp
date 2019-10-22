@@ -46,7 +46,7 @@ import { RequestInterceptor } from './request-interceptor';
     HomeComponent,
     ToolBoxSheetComponent,
     ToolBoxSheetViewComponent,
-    DialogAppComponent
+    DialogAppComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +74,9 @@ import { RequestInterceptor } from './request-interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogAppComponent]
+  entryComponents: [
+    DialogAppComponent,
+  ]
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

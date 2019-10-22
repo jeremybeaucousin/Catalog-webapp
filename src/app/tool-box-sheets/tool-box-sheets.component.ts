@@ -6,7 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { merge, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
-import { CatalogApiService } from '../catalog-api.service';
+import { CatalogApiService } from '../services/catalog-api.service';
 
 import { ToolBoxSheet } from '../models/tool-box-sheet';
 import { DialogAppComponent } from '../commons/dialog-app.component';

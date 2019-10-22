@@ -5,12 +5,13 @@ import { tap, catchError } from 'rxjs/operators';
 
 import { MatSnackBar } from '@angular/material';
 
-import { CatalogApiService } from './catalog-api.service';
+import { CatalogApiService } from './services/catalog-api.service';
+import { SnackBarAppService } from './services/snack-bar-app.services';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
-    constructor(private _snackBar: MatSnackBar) {
+    constructor(private _snackBar: SnackBarAppService) {
 
     }
 
@@ -38,6 +39,7 @@ export class RequestInterceptor implements HttpInterceptor {
             // In seconds
             duration: 3 * 1000,
         });
+
         return next.handle(req);
     }
 }

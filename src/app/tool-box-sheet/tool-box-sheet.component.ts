@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, NgModel, NgForm, FormArray } from '@angular/for
 import { MatInput, MatSnackBar } from '@angular/material';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CatalogApiService } from '../catalog-api.service';
+import { CatalogApiService } from '../services/catalog-api.service';
+import { SnackBarAppService } from '../services/snack-bar-app.services';
 
 @Component({
   selector: 'app-tool-box-sheet',
@@ -64,7 +65,7 @@ export class ToolBoxSheetComponent implements OnInit {
     private router: Router,
     private catalogService: CatalogApiService,
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: SnackBarAppService) {
   }
 
   ngOnInit() {
@@ -161,12 +162,6 @@ export class ToolBoxSheetComponent implements OnInit {
     this._snackBar.open(message, "fermer", {
       // In seconds
       duration: 3 * 1000,
-    }).afterDismissed().subscribe(
-      event => {
-        if (redirection) {
-          this.router.navigate(['/tool-box-sheets']);
-        }
-      }
-    );
+    });
   };
 }

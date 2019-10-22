@@ -4,9 +4,9 @@ import { HttpClient, HttpParams, HttpParameterCodec } from '@angular/common/http
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 
-import { ToolBoxSheet } from './models/tool-box-sheet';
+import { ToolBoxSheet } from '../models/tool-box-sheet';
 
 // Override default encoding to handle '+' and '-'
 class CustomEncoder implements HttpParameterCodec {

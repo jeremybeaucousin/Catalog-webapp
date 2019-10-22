@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { CatalogApiService } from '../catalog-api.service';
+import { CatalogApiService } from '../services/catalog-api.service';
 import { ToolBoxSheet } from '../models/tool-box-sheet';
 
 @Component({
