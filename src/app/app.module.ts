@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
@@ -38,6 +43,9 @@ import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component
 import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
 import { DialogAppComponent } from './commons/dialog-app.component';
 import { RequestInterceptor } from './request-interceptor';
+
+registerLocaleData(localeFr, 'fr');
+registerLocaleData(localeEn, 'en');
 
 @NgModule({
   declarations: [

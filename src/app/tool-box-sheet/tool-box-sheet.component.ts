@@ -123,7 +123,7 @@ export class ToolBoxSheetComponent implements OnInit {
     }
     // Add Values from form array
     var values = data.value;
-    console.log(this.steps);
+
     if (this.steps && this.steps.value) {
       values.steps = extractValuesToArray(this.steps.value, "description");
     }
