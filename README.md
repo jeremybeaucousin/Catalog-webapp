@@ -39,12 +39,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Build for production
 > ng build --prod --i18n-file src/locale/messages.fr.xlf --i18n-format xlf --i18n-locale fr
 With configured langage
-> ng build --prod --configuration=fr
+nb : does not include production file
+> ng build --prod=true --configuration=fr
+With prodution config :
+french 
+> ng build --prod=true --i18n-file src/locale/messages.fr.xlf --i18n-format xlf --i18n-locale fr --baseHref=/fr/ --outputPath dist/Catalog-webapp/fr/
+English
+> ng build --prod=true --i18n-file src/locale/messages.en.xlf --i18n-format xlf --i18n-locale en --baseHref=/en/ --outputPath dist/Catalog-webapp/en/
 
-whith base href
-> ng build --prod --configuration=fr --bh /fr/
 
-## Nginx
 ### Docker
 Create container : 
 
