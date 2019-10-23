@@ -16,4 +16,6 @@ export class TranslationKeysConstants {
     static readonly NO: string = "NO";
     static readonly ERROR_GENERAL_MESSAGE: string = "ERROR_GENERAL_MESSAGE";
     static readonly CLOSE: string = "CLOSE";
+    static readonly AUTH_SUCCESS: string = "AUTH_SUCCESS";
+    static readonly AUTH_FAIL: string = "AUTH_FAIL";
 }

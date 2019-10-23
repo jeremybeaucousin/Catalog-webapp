@@ -15,5 +15,7 @@
     "YES": "Oui",
     "NO": "Non",
     "ERROR_GENERAL_MESSAGE": "Une erreur est survenue : {{message}}",
-    "CLOSE": "Fermer"
+    "CLOSE": "Fermer",
+    "AUTH_SUCCESS": "Authentifié avec succés !",
+    "AUTH_FAIL": "Mauvais couple identifiant/mot de passe !"
 }

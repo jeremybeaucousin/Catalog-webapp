@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+
 import { AuthenticationService } from '../services/authentication-service';
+import { SnackBarAppService } from '../services/snack-bar-app.services';
+import { TranslationKeysConstants } from '../models/translation-keys.constants';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private _snackBar: SnackBarAppService,
+    private translate: TranslateService
   ) {
 
   }
@@ -42,9 +48,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    var message = this.translate.instant(TranslationKeysConstants.AUTH_FAIL);
     if (this.form.username &&
       this.form.password) {
-      this.authenticationService.login(this.form.username.value, this.form.password.value);
+      if (this.authenticationService.login(this.form.username.value, this.form.password.value)) {
+        message = this.translate.instant(TranslationKeysConstants.AUTH_SUCCESS);
+      }
     }
+    const close = this.translate.instant(TranslationKeysConstants.CLOSE);
+    this._snackBar.open(message, close, {
+      // In seconds
+      duration: 3 * 1000,
+    })
   }
 }

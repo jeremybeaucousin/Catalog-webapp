@@ -14,22 +14,22 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  private static readonly currentUserKey: string = 'currentUser';
   private static readonly secretPassPhrase: string = 'MysecretScalian';
+  private static readonly currentUserKey: string = AuthenticationService.encrypt('currentUser');
   constructor(
     private http: HttpClient,
     private router: Router) { }
 
-  private encrypt(string) {
+  private static encrypt(string) {
     return CryptoJS.AES.encrypt(string, AuthenticationService.secretPassPhrase);
   }
 
-  private decrypt(string) {
+  private static decrypt(string) {
     return CryptoJS.AES.decrypt(string, AuthenticationService.secretPassPhrase).toString(CryptoJS.enc.Utf8);
   }
   public getUser() {
     const currentUser = localStorage.getItem(AuthenticationService.currentUserKey);
-    return (currentUser) ? JSON.parse(this.decrypt(currentUser)) : null;
+    return (currentUser) ? JSON.parse(AuthenticationService.decrypt(currentUser)) : null;
   }
 
   public login(username, password) {
@@ -47,7 +47,10 @@ export class AuthenticationService {
       user.role = UserRole.USER;
     }
     if (user) {
-      localStorage.setItem(AuthenticationService.currentUserKey, this.encrypt(JSON.stringify(user)));
+      localStorage.setItem(AuthenticationService.currentUserKey, AuthenticationService.encrypt(JSON.stringify(user)));
+      return true;
+    } else {
+      return false;
     }
   }
 

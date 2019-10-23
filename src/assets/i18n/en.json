@@ -15,5 +15,7 @@
     "YES": "Yes",
     "NO": "No",
     "ERROR_GENERAL_MESSAGE": "An error occured : {{message}}",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "AUTH_SUCCESS": "Successfully authenticated ! ",
+    "AUTH_FAIL": "Wrong couple username/password !"
 }
