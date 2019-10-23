@@ -14,6 +14,7 @@ import { DialogAppComponent } from '../commons/dialog-app.component';
 import { SnackBarAppService } from '../services/snack-bar-app.services';
 import { MatPaginatorTranslator } from '../models/mat-paginator-translator';
 import { TranslationKeysConstants } from '../models/translation-keys.constants';
+import { AuthenticationService } from '../services/authentication-service';
 
 @Component({
   selector: 'app-tool-box-sheets',
@@ -44,7 +45,9 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
     private catalogService: CatalogApiService,
     private _snackBar: SnackBarAppService,
     public dialog: MatDialog,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private authenticationService: AuthenticationService
+  ) {
   }
 
   ngAfterViewInit() {
@@ -81,6 +84,15 @@ export class ToolBoxSheetsComponent implements AfterViewInit {
         this.dataSource = datasource;
       });
   }
+
+  hasAdminPermission() {
+    return this.authenticationService.hasAdminPermission();
+  }
+
+  hasUserPermission() {
+    return this.authenticationService.hasUserPermission();
+  }
+
 
   delete(_id: string) {
     const dialogRef = this.dialog.open(DialogAppComponent, {

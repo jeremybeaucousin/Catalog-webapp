@@ -27,7 +27,8 @@ export class AuthenticationService {
   private static decrypt(string) {
     return CryptoJS.AES.decrypt(string, AuthenticationService.secretPassPhrase).toString(CryptoJS.enc.Utf8);
   }
-  public getUser() {
+
+  public getUser(): UserToken {
     const currentUser = localStorage.getItem(AuthenticationService.currentUserKey);
     return (currentUser) ? JSON.parse(AuthenticationService.decrypt(currentUser)) : null;
   }
@@ -37,6 +38,7 @@ export class AuthenticationService {
       return username === expectedLogin && password === expectedPassord;
     }
     var user: UserToken;
+    // TODO call a real user handler
     if (testLoginPassword("admin", "adminScalian")) {
       user = new UserToken();
       user.username = "admin";
@@ -54,6 +56,15 @@ export class AuthenticationService {
     }
   }
 
+  public hasAdminPermission() {
+    const user = this.getUser();
+    return user && user.role === UserRole.ADMIN;
+  }
+
+  public hasUserPermission() {
+    const user = this.getUser();
+    return user && (user.role === UserRole.USER || user.role === UserRole.ADMIN);
+  }
   public logout() {
     localStorage.removeItem(AuthenticationService.currentUserKey);
     this.router.navigate(['']);
