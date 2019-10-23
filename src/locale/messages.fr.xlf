@@ -612,6 +612,42 @@
         </context-group>
         <note priority="1" from="description">Title for materials part</note>
       </trans-unit>
+      <trans-unit id="loginFormLogoutButton" datatype="html">
+        <source>Se Deconnecter</source>
+        <target>Se Deconnecter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Login button in logout form</note>
+      </trans-unit>
+      <trans-unit id="loginFormFieldLogin" datatype="html">
+        <source>Identifiant</source>
+        <target>Identifiant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Login field in login form</note>
+      </trans-unit>
+      <trans-unit id="loginFormFieldPassword" datatype="html">
+        <source>Mot de passe</source>
+        <target>Mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">Password field in login form</note>
+      </trans-unit>
+      <trans-unit id="loginFormLoginButton" datatype="html">
+        <source>Se Connecter</source>
+        <target>Se Connecter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">Login button in login form</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
