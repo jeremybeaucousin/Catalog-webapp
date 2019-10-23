@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 
+import { environment } from './../environments/environment';
+
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { CatalogApiService } from './services/catalog-api.service';
 import { SnackBarAppService } from './services/snack-bar-app.services';
 import { TranslationKeysConstants } from './models/translation-keys.constants';
 
@@ -20,7 +21,7 @@ export class RequestInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.indexOf(CatalogApiService.toolBoxRoute) !== -1) {
+        if (req.url.indexOf(environment.catalogApiEndploint) !== -1) {
             return next.handle(
                 req.clone(
                     {
