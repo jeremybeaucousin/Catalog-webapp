@@ -5,6 +5,6 @@ export enum UserRole {
 }
 
 export class UserToken {
-    userName: "";
-    role: UserRole = UserRole.PUBLIC;
+    username: string;
+    role: UserRole;
 }

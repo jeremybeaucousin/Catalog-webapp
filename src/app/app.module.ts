@@ -46,9 +46,10 @@ import { HomeComponent } from './home/home.component';
 import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
 import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-view.component';
 import { DialogAppComponent } from './commons/dialog-app.component';
+import { LoginComponent } from './login/login.component';
 import { RequestInterceptor } from './request-interceptor';
 
-import { UserToken } from './permissions/user-token';
+import { UserToken } from './models/user-token';
 import { CanActivatePublic } from './permissions/can-activate-public';
 import { CanActivateAdmin } from './permissions/can-activate-admin';
 import { CanActivateUser } from './permissions/can-activate-user';
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolBoxSheetComponent,
     ToolBoxSheetViewComponent,
     DialogAppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,25 @@
-<form class="form-inline">
-
-    <div class="input-group input-group-sm mb-3">
-        <input class="form-control" type="text" i18n-placeholder="Login field in login form@@loginFormFieldLogin"
-            placeholder="Identifiant">
-        <input class="form-control" type="text" i18n-placeholder="Password field in login form@@loginFormFieldPassword"
-            placeholder="Mot de passe">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit"
-                i18n="Login button in login form@@loginFormLoginButton">Se Connecter</button>
+<div *ngIf="getUser(); else elseBlock">
+    <form class="form-inline">
+        <div class="input-group input-group-sm mb-3">
+            <input class="form-control" type="text" [value]="getUser().username" disabled>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" (click)="logout()"
+                    i18n="Login button in logout form@@loginFormLogoutButton">Se Deconnecter</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+<ng-template #elseBlock>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-inline">
+        <div class="input-group input-group-sm mb-3">
+            <input class="form-control" formControlName="username" type="text"
+                i18n-placeholder="Login field in login form@@loginFormFieldLogin" placeholder="Identifiant">
+            <input class="form-control" formControlName="password" type="password"
+                i18n-placeholder="Password field in login form@@loginFormFieldPassword" placeholder="Mot de passe">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"
+                    i18n="Login button in login form@@loginFormLoginButton">Se Connecter</button>
+            </div>
+        </div>
+    </form>
+</ng-template>
