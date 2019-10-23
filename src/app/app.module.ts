@@ -48,6 +48,12 @@ import { ToolBoxSheetViewComponent } from './tool-box-sheet-view/tool-box-sheet-
 import { DialogAppComponent } from './commons/dialog-app.component';
 import { RequestInterceptor } from './request-interceptor';
 
+import { UserToken } from './permissions/user-token';
+import { CanActivatePublic } from './permissions/can-activate-public';
+import { CanActivateAdmin } from './permissions/can-activate-admin';
+import { CanActivateUser } from './permissions/can-activate-user';
+import { LoginComponent } from './login/login.component';
+
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeEn, 'en');
 
@@ -62,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolBoxSheetComponent,
     ToolBoxSheetViewComponent,
     DialogAppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +100,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     FontAwesomeModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    CanActivatePublic,
+    CanActivateAdmin,
+    CanActivateUser,
+    UserToken
   ],
   bootstrap: [AppComponent],
   entryComponents: [
