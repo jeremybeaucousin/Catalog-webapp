@@ -14,23 +14,32 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
+  private static readonly currentUserKey: string = AuthenticationService.encode('currentUser');
   private static readonly secretPassPhrase: string = 'MysecretScalian';
-  private static readonly currentUserKey: string = AuthenticationService.encrypt('currentUser');
+
   constructor(
     private http: HttpClient,
     private router: Router) { }
 
-  private static encrypt(string) {
+  private static encode(string) {
+    return btoa(btoa(string));
+  }
+
+  private static decode(string) {
+    return atob(atob(string));
+  }
+
+  private static encryptWithSalt(string) {
     return CryptoJS.AES.encrypt(string, AuthenticationService.secretPassPhrase);
   }
 
-  private static decrypt(string) {
+  private static decryptWithSalt(string) {
     return CryptoJS.AES.decrypt(string, AuthenticationService.secretPassPhrase).toString(CryptoJS.enc.Utf8);
   }
 
   public getUser(): UserToken {
     const currentUser = localStorage.getItem(AuthenticationService.currentUserKey);
-    return (currentUser) ? JSON.parse(AuthenticationService.decrypt(currentUser)) : null;
+    return (currentUser) ? JSON.parse(AuthenticationService.decryptWithSalt(currentUser)) : null;
   }
 
   public login(username, password) {
@@ -49,7 +58,7 @@ export class AuthenticationService {
       user.role = UserRole.USER;
     }
     if (user) {
-      localStorage.setItem(AuthenticationService.currentUserKey, AuthenticationService.encrypt(JSON.stringify(user)));
+      localStorage.setItem(AuthenticationService.currentUserKey, AuthenticationService.encryptWithSalt(JSON.stringify(user)));
       return true;
     } else {
       return false;
@@ -66,7 +75,7 @@ export class AuthenticationService {
     return user && (user.role === UserRole.USER || user.role === UserRole.ADMIN);
   }
   public logout() {
-    localStorage.removeItem(AuthenticationService.currentUserKey);
+    localStorage.clear();
     this.router.navigate(['']);
   }
 
