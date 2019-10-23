@@ -567,6 +567,51 @@
         </context-group>
         <note priority="1" from="description">RSave button in toolbox form</note>
       </trans-unit>
+          <trans-unit id="toolTipToolViewDescriptionTitle" datatype="html">
+        <source>Résumé de la pratique</source>
+        <target>Résumé de la pratique</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet-view/tool-box-sheet-view.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Title for description part</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolViewDescriptionSteps" datatype="html">
+        <source>Les étapes</source>
+        <target>Les étapes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet-view/tool-box-sheet-view.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Title for steps part</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolViewDescriptionGoal" datatype="html">
+        <source>Objectif</source>
+        <target>Objectif</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet-view/tool-box-sheet-view.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Title for description goal</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolViewAddedValueTitle" datatype="html">
+        <source>Valeur ajoutée</source>
+        <target>Valeur ajoutée</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet-view/tool-box-sheet-view.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <note priority="1" from="description">Title for added value part</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolViewMaterialsTitle" datatype="html">
+        <source>Materiels</source>
+        <target>Materiels</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-sheet-view/tool-box-sheet-view.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">Title for materials part</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>

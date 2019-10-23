@@ -17,14 +17,14 @@
     <div class="row">
         <div class="col-md-8">
             <div>
-                <h4>Résumé de la pratique</h4>
+                <h4 i18n="Title for description part@@toolTipToolViewDescriptionTitle">Résumé de la pratique</h4>
                 <p>{{detail.description}}</p>
             </div>
 
             <mat-divider></mat-divider>
 
             <div>
-                <h4>Les étapes</h4>
+                <h4 i18n="Title for steps part@@toolTipToolViewDescriptionSteps">Les étapes</h4>
                 <p *ngFor="let step of detail.steps; index as i;">
                     {{step}}
                 </p>
@@ -37,19 +37,19 @@
         <div class="col-md-3">
 
             <div>
-                <h4>Objectif</h4>
+                <h4 i18n="Title for description goal@@toolTipToolViewDescriptionGoal">Objectif</h4>
                 <p>{{detail.goal}}</p>
             </div>
 
             <mat-divider></mat-divider>
 
             <div>
-                <h4>Valeur ajoutée</h4>
+                <h4 i18n="Title for added value part@@toolTipToolViewAddedValueTitle">Valeur ajoutée</h4>
                 <p>{{detail.addedValue}}</p>
             </div>
 
             <div>
-                <h4>Materiels</h4>
+                <h4 i18n="Title for materials part@@toolTipToolViewMaterialsTitle">Materiels</h4>
                 <ul>
                     <li *ngFor="let material of detail.materials; index as i;">
                         {{material}}
