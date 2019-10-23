@@ -15,7 +15,7 @@ export class CanActivateAdmin implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user: UserToken = this.authenticationService.getUser();
-    if (user && user.role !== UserRole.ADMIN) {
+    if (user == null || user.role !== UserRole.ADMIN) {
       alert('You are not allowed to view this page');
       this.router.navigate(['']);
       return false;
