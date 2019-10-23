@@ -52,7 +52,6 @@ import { UserToken } from './permissions/user-token';
 import { CanActivatePublic } from './permissions/can-activate-public';
 import { CanActivateAdmin } from './permissions/can-activate-admin';
 import { CanActivateUser } from './permissions/can-activate-user';
-import { LoginComponent } from './login/login.component';
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeEn, 'en');
@@ -68,7 +67,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolBoxSheetComponent,
     ToolBoxSheetViewComponent,
     DialogAppComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
