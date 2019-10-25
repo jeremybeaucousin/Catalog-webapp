@@ -77,7 +77,6 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
           const offset = (this.paginator.pageIndex * this.paginator.pageSize);
           const limit = this.paginator.pageSize;
           const wordSequence = (this.searchForm.value) ? this.searchForm.value.search : "";
-          console.log("refresh");
           return this.catalogService.getToolBoxSheets(offset, limit, this.sort.active, this.sort.direction, wordSequence);
         }),
         map((response) => {
