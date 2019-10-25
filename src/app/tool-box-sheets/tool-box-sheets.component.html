@@ -1,8 +1,9 @@
 <div class="example-table-container">
-    <div class="row">
+    <form [formGroup]="searchForm" class="row">
         <mat-form-field i18n-matTooltip="Tooltip for toolbox search@@toolTipToolBoxesSearch"
             matTooltip="Rechercher un mot ou une séquence dans les boites à outils" class="col-md-11">
-            <input matInput i18n-placeholder="Label for search field in toolboxes form@@toolBoxesFieldSearchLabel"
+            <input matInput formControlName="search"
+                i18n-placeholder="Label for search field in toolboxes form@@toolBoxesFieldSearchLabel"
                 placeholder="Filtre">
         </mat-form-field>
         <a *ngIf="hasAdminPermission()" mat-icon-button routerLink="/tool-box-sheet" routerLinkActive="active"
@@ -10,7 +11,7 @@
             matTooltip="Ajouter une nouvelle boite à outil" class="col-md-1 add-icon">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </a>
-    </div>
+    </form>
 
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort matSortDisableClear
         matSortDirection="desc">
