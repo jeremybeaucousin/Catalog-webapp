@@ -1,10 +1,10 @@
-import { Component, AfterViewInit, ViewChild, ViewChildren, QueryList, Directive, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { MatPaginator, MatSort, MatInput, MatTableDataSource, MatDialog, MatButton } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
-import { merge, of as observableOf, Observable, Subscription } from 'rxjs';
+import { merge, of as observableOf, Observable } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 import { CatalogApiService } from '../services/catalog-api.service';
@@ -34,12 +34,10 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<ToolBoxSheet>;
 
   resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
   expandedRow;
   observableInputs: Observable<object | any[]>;
-
   searchForm: FormGroup;
+  deleteSheet: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -69,29 +67,22 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
       () => {
         this.paginator.pageIndex = 0;
       });
-    this.observableInputs = merge(this.sort.sortChange, this.paginator.page, this.searchForm.valueChanges)
+    this.observableInputs = merge(this.sort.sortChange, this.paginator.page, this.searchForm.valueChanges, this.deleteSheet)
       .pipe(
         startWith({}),
         switchMap(() => {
-          this.isLoadingResults = true;
           const offset = (this.paginator.pageIndex * this.paginator.pageSize);
           const limit = this.paginator.pageSize;
           const wordSequence = (this.searchForm.value) ? this.searchForm.value.search : "";
           return this.catalogService.getToolBoxSheets(offset, limit, this.sort.active, this.sort.direction, wordSequence);
         }),
         map((response) => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
           // Total count
           this.resultsLength = response[0];
           // data
           return response[1];
         }),
         catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
           return observableOf([]);
         })
       );
@@ -125,21 +116,16 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
       if (validate) {
         this.catalogService.deleteToolBoxSheets(_id).subscribe(
           result => {
-            var data = this.dataSource.data;
-            // Supress deleted element
-            var suppressesIndex = data.findIndex(function (element: any) {
-              return element._id == _id;
-            });
-            data.splice(suppressesIndex, 1);
-            this.paginator.length = (this.paginator.length - 1);
-            // Reload change
-            this.dataSource._updateChangeSubscription();
-            const message = this.translate.instant(TranslationKeysConstants.ITEM_DELETED);
-            const close = this.translate.instant(TranslationKeysConstants.CLOSE);
-            this._snackBar.open(message, close, {
-              // In seconds
-              duration: 3 * 1000,
-            });
+            // Timeout of 1 second because get data before delete is too fast and get the old values
+            setTimeout(() => {
+              this.deleteSheet.emit();
+              const message = this.translate.instant(TranslationKeysConstants.ITEM_DELETED);
+              const close = this.translate.instant(TranslationKeysConstants.CLOSE);
+              this._snackBar.open(message, close, {
+                // In seconds
+                duration: 3 * 1000,
+              });
+            }, 1000);
           }
         );
       }
