@@ -75,7 +75,7 @@ export class AuthenticationService {
     return user && (user.role === UserRole.USER || user.role === UserRole.ADMIN);
   }
   public logout() {
-    localStorage.clear();
+    localStorage.removeItem(AuthenticationService.currentUserKey);
     this.router.navigate(['']);
   }
 
