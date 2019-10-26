@@ -97,6 +97,10 @@ export class CatalogApiService {
           console.error(response.body);
           return [0, (response.body as any).message];
         }
+      }),
+      catchError(error => {
+        console.error(error);
+        return [0, error.message];
       })
     );
   }

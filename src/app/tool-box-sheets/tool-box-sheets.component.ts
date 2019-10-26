@@ -82,13 +82,15 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
           // data
           return response[1];
         }),
-        catchError(() => {
+        catchError((error) => {
           return observableOf([]);
         })
       );
 
     this.observableInputs.subscribe(data => {
-      this.dataSource.data = data as Array<ToolBoxSheet>;
+      if (data instanceof Array) {
+        this.dataSource.data = data as Array<ToolBoxSheet>;
+      }
     })
   }
 
