@@ -8,6 +8,7 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} sur {{length}}",
     "MODAL_CONFIRMATION_TITLE": "Confirmation !",
     "MODAL_CONFIRMATION_MESSAGE": "Voulez vous vraiment supprimer cette enregistrement ?",
+    "LOADING": "CHARGEMENT EN COURS...!",
     "TOOL_BOX": "Boite à outil",
     "TOOL_BOXES_PAGE": "Liste des boîtes à outil",
     "ITEM_SAVED_REDIRECTION": "{{item}} enregistré, vous aller être redirigé vers {{pageName}}",

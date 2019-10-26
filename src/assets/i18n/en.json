@@ -8,6 +8,7 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}",
     "MODAL_CONFIRMATION_TITLE": "Confirmation !",
     "MODAL_CONFIRMATION_MESSAGE": "You really want to delete this items ?",
+    "LOADING": "LOADING...!",
     "TOOL_BOX": "Toolbox",
     "TOOL_BOXES_PAGE": "Toolboxes list",
     "ITEM_SAVED_REDIRECTION": "{{item}} saved, you will be redirect to {{pageName}}",

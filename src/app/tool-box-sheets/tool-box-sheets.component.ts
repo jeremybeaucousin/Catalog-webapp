@@ -116,10 +116,17 @@ export class ToolBoxSheetsComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(validate => {
       if (validate) {
+        const dialogRef = this.dialog.open(DialogAppComponent, {
+          width: '400px',
+          data: {
+            message: this.translate.instant(TranslationKeysConstants.LOADING)
+          }
+        });
         this.catalogService.deleteToolBoxSheets(_id).subscribe(
           result => {
             // Timeout of 1 second because get data before delete is too fast and get the old values
             setTimeout(() => {
+              dialogRef.close();
               this.deleteSheet.emit();
               const message = this.translate.instant(TranslationKeysConstants.ITEM_DELETED);
               const close = this.translate.instant(TranslationKeysConstants.CLOSE);

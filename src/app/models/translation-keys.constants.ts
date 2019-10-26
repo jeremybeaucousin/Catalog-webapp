@@ -8,6 +8,7 @@ export class TranslationKeysConstants {
     static readonly RANGE_PAGE_LABEL_2: string = "RANGE_PAGE_LABEL_2";
     static readonly MODAL_CONFIRMATION_TITLE: string = "MODAL_CONFIRMATION_TITLE";
     static readonly MODAL_CONFIRMATION_MESSAGE: string = "MODAL_CONFIRMATION_MESSAGE";
+    static readonly LOADING: string = "LOADING";
     static readonly TOOL_BOX: string = "TOOL_BOX";
     static readonly TOOL_BOXES_PAGE: string = "TOOL_BOXES_PAGE";
     static readonly ITEM_SAVED_REDIRECTION: string = "ITEM_SAVED_REDIRECTION";
