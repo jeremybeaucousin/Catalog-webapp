@@ -91,8 +91,9 @@ export class ToolBoxSheetComponent implements OnInit {
       materials: this.formBuilder.array([])
     });
 
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this._id = params['_id'];
+      console.log("_id", this._id);
       if (this._id) {
         this.catalogService.getToolBoxSheetById(this._id).subscribe(
           (data) => {

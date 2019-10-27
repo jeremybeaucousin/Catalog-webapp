@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ul class="breadcrumb">
         <li class="breadcrumb-item">
             <a [routerLink]="['']" routerLinkActive="active"
                 i18n="Label for home page link in navigation@@navHomePage">Accueil</a>
@@ -8,5 +8,5 @@
             <a [routerLink]="[breadcrumb.url, breadcrumb.params]"
                 i18n="{{ breadcrumb.i18n }}">{{ breadcrumb.label }}</a>
         </li>
-    </ol>
+    </ul>
 </nav>

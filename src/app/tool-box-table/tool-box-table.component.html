@@ -39,8 +39,8 @@
                 </a>
                 <a *ngIf="hasAdminPermission()" mat-icon-button
                     i18n-matTooltip="Tooltip for toolbox edit@@toolTipToolBoxesEdit"
-                    matTooltip="Modifier une boite à outil" [routerLink]="['tool-box-sheet', row._id]"
-                    routerLinkActive="active">
+                    matTooltip="Modifier une boite à outil" [routerLink]="['tool-box-sheet']"
+                    [queryParams]="{ _id: row._id }" routerLinkActive="active">
                     <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                 </a>
                 <button *ngIf="hasAdminPermission()" mat-button

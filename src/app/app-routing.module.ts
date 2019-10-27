@@ -7,11 +7,11 @@ import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component
 import { CanActivatePublic } from './permissions/can-activate-public';
 import { CanActivateAdmin } from './permissions/can-activate-admin';
 import { ToolBoxTableComponent } from './tool-box-table/tool-box-table.component';
+import { CanActivateUser } from './permissions/can-activate-user';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: HomeComponent,
     canActivate: [CanActivatePublic],
     children: [
@@ -34,25 +34,16 @@ const routes: Routes = [
           i18n: "Label for toolbox dashboard link in navigation@@navToolBoxesOverviewPage"
         },
         component: ToolBoxTableComponent,
-        canActivate: [CanActivateAdmin],
+        canActivate: [CanActivatePublic],
       },
       {
         path: 'tool-box-sheet',
+        component: ToolBoxSheetComponent,
         data: {
           breadcrumb: "Boite à outil",
           i18n: "Label for toolbox page link in navigation@@navToolBoxPage"
         },
-        component: ToolBoxSheetComponent,
-        canActivate: [CanActivateAdmin],
-      },
-      {
-        path: 'tool-box-sheet/:_id',
-        data: {
-          breadcrumb: "Boite à outil",
-          i18n: "Label for toolbox page link in navigation@@navToolBoxPage"
-        },
-        component: ToolBoxSheetComponent,
-        canActivate: [CanActivateAdmin],
+        canActivate: [CanActivateAdmin]
       }
     ]
   },
