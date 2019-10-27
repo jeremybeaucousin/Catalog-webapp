@@ -30,18 +30,15 @@ export class LocalSessionService {
   }
 
   public setItem(key: string, data: any) {
-    console.log("set Item")
     localStorage.setItem(LocalSessionService.encode(key), LocalSessionService.encryptWithSalt(JSON.stringify(data)));
   }
 
   public getItem(key: string) {
-    console.log("getItem")
     const data = localStorage.getItem(LocalSessionService.encode(key));
     return (data) ? LocalSessionService.decryptWithSalt(data) : null;
   }
 
   public removeItem(key: string) {
-    console.log("remveItem")
     localStorage.removeItem(LocalSessionService.encode(key));
   }
 
