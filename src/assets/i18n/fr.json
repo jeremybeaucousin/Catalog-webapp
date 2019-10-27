@@ -1,4 +1,7 @@
 {
+    "NAV_TOOLBOXES_PAGE": "Boites à outils",
+    "NAV_TOOLBOXES_TOOLBOXE_PAGE": "Boite à outils",
+    "NAV_TOOLBOXES_DASHBOARD_PAGE": "Tableau de bors",
     "ITEMS_PER_PAGE_LABEL": "Enregistrement par page",
     "NEXT_PAGE_LABEL": "Page Suivante",
     "PREVIOUS_PAGE_LABEL": "Page Précédente",

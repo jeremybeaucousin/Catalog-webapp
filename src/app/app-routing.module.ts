@@ -21,8 +21,7 @@ const routes: Routes = [
   {
     path: 'tool-box-sheets',
     data: {
-      breadcrumb: "Boite à outils",
-      i18n: "Label for toolboxes page link in navigation@@navToolBoxesPage"
+      breadcrumbTranslationKey: "NAV_TOOLBOXES_PAGE"
     },
     component: ToolBoxSheetsComponent,
     canActivate: [CanActivatePublic],
@@ -30,8 +29,7 @@ const routes: Routes = [
       {
         path: '',
         data: {
-          breadcrumb: "Tableau de bord",
-          i18n: "Label for toolbox dashboard link in navigation@@navToolBoxesOverviewPage"
+          breadcrumbTranslationKey: "NAV_TOOLBOXES_DASHBOARD_PAGE"
         },
         component: ToolBoxTableComponent,
         canActivate: [CanActivatePublic],
@@ -40,8 +38,7 @@ const routes: Routes = [
         path: 'tool-box-sheet',
         component: ToolBoxSheetComponent,
         data: {
-          breadcrumb: "Boite à outil",
-          i18n: "Label for toolbox page link in navigation@@navToolBoxPage"
+          breadcrumbTranslationKey: "NAV_TOOLBOXES_TOOLBOXE_PAGE"
         },
         canActivate: [CanActivateAdmin]
       }

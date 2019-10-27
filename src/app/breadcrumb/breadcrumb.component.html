@@ -5,8 +5,8 @@
                 i18n="Label for home page link in navigation@@navHomePage">Accueil</a>
         </li>
         <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
-            <a [queryParams]="breadcrumb.queryParams" [routerLink]="[breadcrumb.url, breadcrumb.params]"
-                i18n="{{ breadcrumb.i18n }}">{{ breadcrumb.label }}</a>
+            <a [queryParams]="breadcrumb.queryParams"
+                [routerLink]="[breadcrumb.url, breadcrumb.params]">{{ breadcrumb.label }}</a>
         </li>
     </ul>
 </nav>

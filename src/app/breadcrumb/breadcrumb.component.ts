@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 import { filter } from 'rxjs/operators';
+
 
 interface IBreadcrumb {
   label: string;
-  i18n: string;
   params: Params;
   queryParams: Params;
   url: string;
@@ -21,13 +23,12 @@ export class BreadcrumbComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private translate: TranslateService) {
     this.breadcrumbs = [];
   }
 
   ngOnInit() {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
-
     //subscribe to the NavigationEnd event
     this.router.events.pipe(
       filter(event => {
@@ -52,8 +53,7 @@ export class BreadcrumbComponent implements OnInit {
  * @param {IBreadcrumb[]} breadcrumbs
  */
   private getBreadcrumbs(route: ActivatedRoute, url: string = "", breadcrumbs: IBreadcrumb[] = []): IBreadcrumb[] {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
-    const ROUTE_DATA_I18N: string = "i18n";
+    const ROUTE_DATA_TRANSLATION_KEY: string = "breadcrumbTranslationKey";
     //get the child routes
     let children: ActivatedRoute[] = route.children;
     //return if there are no more children
@@ -69,7 +69,7 @@ export class BreadcrumbComponent implements OnInit {
       }
 
       //verify the custom data property "breadcrumb" is specified on the route
-      if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
+      if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_TRANSLATION_KEY)) {
         return this.getBreadcrumbs(child, url, breadcrumbs);
       }
 
@@ -79,10 +79,11 @@ export class BreadcrumbComponent implements OnInit {
       //append route URL to URL
       url += `/${routeURL}`;
 
+      const label = this.translate.instant(child.snapshot.data[ROUTE_DATA_TRANSLATION_KEY]);
+
       //add breadcrumb
       let breadcrumb: IBreadcrumb = {
-        label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
-        i18n: child.snapshot.data[ROUTE_DATA_I18N],
+        label: label,
         params: child.snapshot.params,
         queryParams: child.snapshot.queryParams,
         url: url
