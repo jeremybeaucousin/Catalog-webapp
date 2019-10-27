@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserToken, UserRole } from '../models/user-token';
 import { Router } from '@angular/router';
+import { LocalSessionService } from './local-session-service';
 
 
 @Injectable({
@@ -14,32 +15,16 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  private static readonly currentUserKey: string = AuthenticationService.encode('currentUser');
-  private static readonly secretPassPhrase: string = 'MysecretScalian';
+  private static readonly currentUserKey: string = 'currentUser';
 
   constructor(
     private http: HttpClient,
-    private router: Router) { }
-
-  private static encode(string) {
-    return btoa(btoa(string));
-  }
-
-  private static decode(string) {
-    return atob(atob(string));
-  }
-
-  private static encryptWithSalt(string) {
-    return CryptoJS.AES.encrypt(string, AuthenticationService.secretPassPhrase);
-  }
-
-  private static decryptWithSalt(string) {
-    return CryptoJS.AES.decrypt(string, AuthenticationService.secretPassPhrase).toString(CryptoJS.enc.Utf8);
-  }
+    private router: Router,
+    private localSessionService: LocalSessionService) { }
 
   public getUser(): UserToken {
-    const currentUser = localStorage.getItem(AuthenticationService.currentUserKey);
-    return (currentUser) ? JSON.parse(AuthenticationService.decryptWithSalt(currentUser)) : null;
+    const currentUser = this.localSessionService.getItem(AuthenticationService.currentUserKey);
+    return (currentUser) ? JSON.parse(currentUser) : null;
   }
 
   public login(username, password) {
@@ -58,7 +43,7 @@ export class AuthenticationService {
       user.role = UserRole.USER;
     }
     if (user) {
-      localStorage.setItem(AuthenticationService.currentUserKey, AuthenticationService.encryptWithSalt(JSON.stringify(user)));
+      this.localSessionService.setItem(AuthenticationService.currentUserKey, user);
       return true;
     } else {
       return false;
@@ -75,7 +60,7 @@ export class AuthenticationService {
     return user && (user.role === UserRole.USER || user.role === UserRole.ADMIN);
   }
   public logout() {
-    localStorage.removeItem(AuthenticationService.currentUserKey);
+    this.localSessionService.removeItem(AuthenticationService.currentUserKey)
     this.router.navigate(['']);
   }
 
