@@ -280,7 +280,11 @@
         <target>Home</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumb/breadcrumb.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
         <note priority="1" from="description">Label for home page link in navigation</note>
       </trans-unit>
@@ -289,7 +293,7 @@
         <target>Toolboxes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <note priority="1" from="description">Label for toolboxes page link in navigation</note>
       </trans-unit>
@@ -300,92 +304,9 @@
       All rights reserved© Copyright 2019. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <note priority="1" from="description">Label for footer rights</note>
-      </trans-unit>
-       <trans-unit id="toolBoxesFieldSearchLabel" datatype="html">
-        <source>Filtre</source>
-        <target>Filter</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-        <note priority="1" from="description">Label for search field in toolboxes form</note>
-      </trans-unit>
-      <trans-unit id="toolTipToolBoxesSearch" datatype="html">
-        <source>Rechercher un mot ou une séquence dans les boites à outils</source>
-        <target>Search for a specific word or sequence in the toolboxes</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-        <note priority="1" from="description">Tooltip for toolbox search</note>
-      </trans-unit>
-      <trans-unit id="toolTipToolBoxesAdd" datatype="html">
-        <source>Ajouter une nouvelle boite à outil</source>
-        <target>Add a nex toolbox</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-        <note priority="1" from="description">Tooltip for toolbox add</note>
-      </trans-unit>
-       <trans-unit id="toolBoxesColumnTitleTitle" datatype="html">
-        <source>Titre</source>
-        <target>Title</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <note priority="1" from="description">Label for column title title</note>
-      </trans-unit>
-      <trans-unit id="toolBoxesColumnDescriptionTitle" datatype="html">
-        <source>Déscription</source>
-        <target>Description</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <note priority="1" from="description">Label for column description title</note>
-      </trans-unit>
-      <trans-unit id="toolBoxesColumnActionsTitle" datatype="html">
-        <source>
-                Actions</source>
-        <target>
-                Actions</target>                
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <note priority="1" from="description">Label for column actions title</note>
-      </trans-unit>
-      <trans-unit id="toolTipToolBoxesView" datatype="html">
-        <source>Visualiser une boite à outil, en travaux !</source>
-        <target>Visualize a toolbox, in maintenance !</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <note priority="1" from="description">Tooltip for toolbox view</note>
-      </trans-unit>
-      <trans-unit id="toolTipToolBoxesEdit" datatype="html">
-        <source>Modifier une boite à outil</source>
-        <target>Edit a toolbox</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-        <note priority="1" from="description">Tooltip for toolbox edit</note>
-      </trans-unit>
-      <trans-unit id="toolTipToolBoxesDelete" datatype="html">
-        <source>Supprimer une boite à outil</source>
-        <target>Delete a toolbox</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/tool-box-sheets/tool-box-sheets.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-        <note priority="1" from="description">Tooltip for toolbox delete</note>
       </trans-unit>
       <trans-unit id="homeSiteTitle" datatype="html">
         <source>Bienvenue !</source>
@@ -415,7 +336,7 @@
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
-        <note priority="1" from="description">Label for home site description</note>
+        <note priority="1" from="description">Label for home site navigation</note>
       </trans-unit>
       <trans-unit id="toolBoxFormFieldTitle" datatype="html">
         <source>Titre</source>
@@ -460,7 +381,7 @@
         <target>Practice description</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <note priority="1" from="description">Description field in toolbox form</note>
       </trans-unit>
@@ -478,7 +399,7 @@
         <target>Add a new step</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <note priority="1" from="description">Add Step button in toolbox form</note>
       </trans-unit>
@@ -487,7 +408,7 @@
         <target>Step <x id="INTERPOLATION" equiv-text="{{ i + 1 }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <note priority="1" from="description">Steps field in toolbox form</note>
       </trans-unit>
@@ -496,11 +417,11 @@
         <target>Delete a step</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">98</context>
         </context-group>
         <note priority="1" from="description">Remove Step button in toolbox form</note>
       </trans-unit>
@@ -509,7 +430,7 @@
         <target>Goal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">68</context>
         </context-group>
         <note priority="1" from="description">Goal field in toolbox form</note>
       </trans-unit>
@@ -518,7 +439,7 @@
         <target>Added value</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <note priority="1" from="description">Added value field in toolbox form</note>
       </trans-unit>
@@ -536,7 +457,7 @@
         <target>Add a new material</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <note priority="1" from="description">Add Material button in toolbox form</note>
       </trans-unit>
@@ -545,7 +466,7 @@
         <target>Material <x id="INTERPOLATION" equiv-text="{{ i + 1 }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">93</context>
         </context-group>
         <note priority="1" from="description">Materials field in toolbox form</note>
       </trans-unit>
@@ -558,7 +479,7 @@
     </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tool-box-sheet/tool-box-sheet.component.html</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">106</context>
         </context-group>
         <note priority="1" from="description">RSave button in toolbox form</note>
       </trans-unit>
@@ -642,6 +563,98 @@
           <context context-type="linenumber">21</context>
         </context-group>
         <note priority="1" from="description">Login button in login form</note>
+      </trans-unit>
+      <trans-unit id="2ea819a78a90f73a63888cfb310079bef4d6f5de" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ breadcrumb.label }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ breadcrumb.label }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumb/breadcrumb.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">{{ breadcrumb.i18n }}</note>
+      </trans-unit>
+      <trans-unit id="toolBoxesFieldSearchLabel" datatype="html">
+        <source>Filtre</source>
+        <target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Label for search field in toolboxes form</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolBoxesSearch" datatype="html">
+        <source>Rechercher un mot ou une séquence dans les boites à outils</source>
+        <target>Search for a specific word or sequence in the toolboxes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toolbox search</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolBoxesAdd" datatype="html">
+        <source>Ajouter une nouvelle boite à outil</source>
+        <target>Add a nex toolbox</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toolbox add</note>
+      </trans-unit>
+       <trans-unit id="toolBoxesColumnTitleTitle" datatype="html">
+        <source>Titre</source>
+        <target>Title</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">Label for column title title</note>
+      </trans-unit>
+      <trans-unit id="toolBoxesColumnDescriptionTitle" datatype="html">
+        <source>Déscription</source>
+        <target>Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Label for column description title</note>
+      </trans-unit>
+      <trans-unit id="toolBoxesColumnActionsTitle" datatype="html">
+        <source>
+                Actions</source>
+        <target>
+                Actions</target>                
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">Label for column actions title</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolBoxesView" datatype="html">
+        <source>Visualiser une boite à outil, en travaux !</source>
+        <target>Visualize a toolbox, in maintenance !</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toolbox view</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolBoxesEdit" datatype="html">
+        <source>Modifier une boite à outil</source>
+        <target>Edit a toolbox</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toolbox edit</note>
+      </trans-unit>
+      <trans-unit id="toolTipToolBoxesDelete" datatype="html">
+        <source>Supprimer une boite à outil</source>
+        <target>Delete a toolbox</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tool-box-table/tool-box-table.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for toolbox delete</note>
       </trans-unit>
     </body>
   </file>

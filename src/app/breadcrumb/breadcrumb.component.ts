@@ -6,6 +6,7 @@ interface IBreadcrumb {
   label: string;
   i18n: string;
   params: Params;
+  queryParams: Params;
   url: string;
 }
 
@@ -83,8 +84,10 @@ export class BreadcrumbComponent implements OnInit {
         label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
         i18n: child.snapshot.data[ROUTE_DATA_I18N],
         params: child.snapshot.params,
+        queryParams: child.snapshot.queryParams,
         url: url
       };
+
       breadcrumbs.push(breadcrumb);
       //recursive
       return this.getBreadcrumbs(child, url, breadcrumbs);
