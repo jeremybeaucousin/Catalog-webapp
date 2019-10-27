@@ -53,6 +53,8 @@ import { UserToken } from './models/user-token';
 import { CanActivatePublic } from './permissions/can-activate-public';
 import { CanActivateAdmin } from './permissions/can-activate-admin';
 import { CanActivateUser } from './permissions/can-activate-user';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { ToolBoxTableComponent } from './tool-box-table/tool-box-table.component';
 
 registerLocaleData(localeFr, 'fr');
 registerLocaleData(localeEn, 'en');
@@ -68,7 +70,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolBoxSheetComponent,
     ToolBoxSheetViewComponent,
     DialogAppComponent,
-    LoginComponent
+    LoginComponent,
+    BreadcrumbComponent,
+    ToolBoxTableComponent
   ],
   imports: [
     BrowserModule,

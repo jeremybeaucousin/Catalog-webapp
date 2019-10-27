@@ -1,0 +1,12 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a [routerLink]="['']" routerLinkActive="active"
+                i18n="Label for home page link in navigation@@navHomePage">Accueil</a>
+        </li>
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+            <a [routerLink]="[breadcrumb.url, breadcrumb.params]"
+                i18n="{{ breadcrumb.i18n }}">{{ breadcrumb.label }}</a>
+        </li>
+    </ol>
+</nav>
