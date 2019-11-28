@@ -26,7 +26,7 @@ export class RequestInterceptor implements HttpInterceptor {
                 req.clone(
                     {
                         // 
-                        headers: req.headers.append('test', 'Bearer ' + " testToken")
+                        // headers: req.headers.append('test', 'Bearer ' + " testToken")
                     }
                 )).pipe(
                     catchError((error: HttpErrorResponse) => {

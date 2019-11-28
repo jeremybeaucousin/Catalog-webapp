@@ -7,6 +7,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class LocalSessionService {
 
+  // TODO GENERATE FROM SERVER
   private static readonly secretPassPhrase: string = 'MysecretScalian';
 
   constructor(

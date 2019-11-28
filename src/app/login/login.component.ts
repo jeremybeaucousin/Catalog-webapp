@@ -51,16 +51,20 @@ export class LoginComponent implements OnInit {
     var message = this.translate.instant(TranslationKeysConstants.AUTH_FAIL);
     if (this.form.username &&
       this.form.password) {
-      if (this.authenticationService.login(this.form.username.value, this.form.password.value)) {
-        message = this.translate.instant(TranslationKeysConstants.AUTH_SUCCESS);
-        // Clear form after validation
-        this.loginForm.reset();
-      }
+      this.authenticationService.login(this.form.username.value, this.form.password.value).subscribe(
+        authenticate => {
+          if (authenticate === true) {
+            message = this.translate.instant(TranslationKeysConstants.AUTH_SUCCESS);
+            // Clear form after validation
+            this.loginForm.reset();
+          }
+          const close = this.translate.instant(TranslationKeysConstants.CLOSE);
+          this._snackBar.open(message, close, {
+            // In seconds
+            duration: 3 * 1000,
+          });
+        }
+      );
     }
-    const close = this.translate.instant(TranslationKeysConstants.CLOSE);
-    this._snackBar.open(message, close, {
-      // In seconds
-      duration: 3 * 1000,
-    });
   }
 }

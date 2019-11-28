@@ -6,7 +6,10 @@ import { version } from '../../package.json';
 export const environment = {
   production: false,
   appVersion: version,
-  catalogApiEndploint: "http://localhost:9001/"
+  catalogApiEndploint: "http://localhost:9001/",
+  authenticationApiEndpoint: "http://localhost:9001/",
+  adminRoles: ["superuser", "catalog_admin"],
+  userRoles: ["catalog_user"],
 };
 
 /*
