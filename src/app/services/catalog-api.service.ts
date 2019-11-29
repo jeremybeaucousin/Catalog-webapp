@@ -106,7 +106,9 @@ export class CatalogApiService {
   }
 
   public getToolBoxSheetById(_id: string): Observable<any> {
-    return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, { observe: 'response' }).pipe(
+    return this.http.get(`${CatalogApiService.getToolBoxSheetsUri()}/${_id}`, {
+      observe: 'response'
+    }).pipe(
       map(response => {
         var body = response.body;
         if (response.status == 200) {

@@ -21,5 +21,6 @@
     "ERROR_GENERAL_MESSAGE": "An error occured : {{message}}",
     "CLOSE": "Close",
     "AUTH_SUCCESS": "Successfully authenticated ! ",
-    "AUTH_FAIL": "Wrong couple username/password !"
+    "AUTH_FAIL": "Wrong couple username/password !",
+    "SESSION_EXPIRED": "Your session has expired !"
 }

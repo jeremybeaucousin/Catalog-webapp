@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpParameterCodec, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { map, catchError } from 'rxjs/operators';
 import { UserToken, UserRole } from '../models/user-token';
@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { LocalSessionService } from './local-session-service';
-import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -49,11 +48,6 @@ export class AuthenticationService {
               user = new UserToken();
               user.username = body.username;
               user.roles = this.defineUserRoles(body.roles);
-              console.log(user);
-              console.log(response);
-              console.log(response.headers.keys());
-              response.headers.keys()
-              console.log(response.headers.get("Set-Cookie"));
               this.localSessionService.setItem(AuthenticationService.currentUserKey, user);
             }
             return true;
@@ -92,6 +86,7 @@ export class AuthenticationService {
     const user = this.getUser();
     return user && (user.roles.includes(UserRole.USER));
   }
+
   public logout() {
     this.http.get(`${environment.catalogApiEndploint}${AuthenticationService.logoutRoute}`).subscribe(
       response => {

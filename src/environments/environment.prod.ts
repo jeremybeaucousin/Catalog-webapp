@@ -5,6 +5,7 @@ export const environment = {
   appVersion: version,
   catalogApiEndploint: "https://109.18.10.254:9001/",
   authenticationApiEndpoint: "https://109.18.10.254:9001/",
+  authenticationApiCookieKey: "PLAY_SESSION",
   adminRoles: ["superuser", "catalog_admin"],
   userRoles: ["catalog_user"],
 };

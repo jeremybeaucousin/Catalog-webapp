@@ -21,5 +21,6 @@
     "ERROR_GENERAL_MESSAGE": "Une erreur est survenue : {{message}}",
     "CLOSE": "Fermer",
     "AUTH_SUCCESS": "Authentifié avec succés !",
-    "AUTH_FAIL": "Mauvais couple identifiant/mot de passe !"
+    "AUTH_FAIL": "Mauvais couple identifiant/mot de passe !",
+    "SESSION_EXPIRED": "Votre session a expiré !"
 }

@@ -6,5 +6,5 @@ export enum UserRole {
 
 export class UserToken {
     username: string;
-    role: UserRole;
+    roles: Array<UserRole>;
 }

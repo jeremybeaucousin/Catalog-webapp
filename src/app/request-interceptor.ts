@@ -9,6 +9,8 @@ import { catchError } from 'rxjs/operators';
 
 import { SnackBarAppService } from './services/snack-bar-app.services';
 import { TranslationKeysConstants } from './models/translation-keys.constants';
+import { CookieService } from './services/cookie-service';
+import { AuthenticationService } from './services/authentication-service';
 
 
 @Injectable()
@@ -16,17 +18,26 @@ export class RequestInterceptor implements HttpInterceptor {
 
     constructor(
         private _snackBar: SnackBarAppService,
-        private translate: TranslateService) {
+        private translate: TranslateService,
+        private cookieService: CookieService,
+        private authenticationService: AuthenticationService) {
 
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.indexOf(environment.catalogApiEndploint) !== -1) {
+        if (req.url.indexOf(environment.catalogApiEndploint) !== -1 || req.url.indexOf(environment.authenticationApiEndpoint) !== -1) {
+            const authCookie = this.cookieService.getCookie(environment.authenticationApiCookieKey);
+            var headers = req.headers;
+            var withCredentials = req.withCredentials;
+            if (authCookie) {
+                // headers = headers.append('Cookie', authCookie);
+                withCredentials = true;
+            }
             return next.handle(
                 req.clone(
                     {
-                        // 
-                        // headers: req.headers.append('test', 'Bearer ' + " testToken")
+                        headers: headers,
+                        withCredentials: withCredentials
                     }
                 )).pipe(
                     catchError((error: HttpErrorResponse) => {
@@ -40,8 +51,17 @@ export class RequestInterceptor implements HttpInterceptor {
     }
 
     errorHandler(req: HttpRequest<any>, next: HttpHandler, error: HttpErrorResponse): Observable<HttpEvent<any>> {
-        console.error("an error occured", error);
-        const message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: error.message });
+        var message;
+        const currentUser = this.authenticationService.getUser();
+        // Handle session expiration
+        if (currentUser && error.status === 401) {
+            message = this.translate.instant(TranslationKeysConstants.SESSION_EXPIRED);
+            this.authenticationService.logout();
+        } else {
+            console.error("an error occured", error);
+            message = this.translate.instant(TranslationKeysConstants.ERROR_GENERAL_MESSAGE, { message: error.message });
+        }
+
         const close = this.translate.instant(TranslationKeysConstants.CLOSE);
         this._snackBar.open(message, close, {
             // In seconds

@@ -19,4 +19,5 @@ export class TranslationKeysConstants {
     static readonly CLOSE: string = "CLOSE";
     static readonly AUTH_SUCCESS: string = "AUTH_SUCCESS";
     static readonly AUTH_FAIL: string = "AUTH_FAIL";
+    static readonly SESSION_EXPIRED: string = "SESSION_EXPIRED";
 }
