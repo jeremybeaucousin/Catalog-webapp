@@ -9,7 +9,6 @@ import { catchError } from 'rxjs/operators';
 
 import { SnackBarAppService } from './services/snack-bar-app.services';
 import { TranslationKeysConstants } from './models/translation-keys.constants';
-import { CookieService } from './services/cookie-service';
 import { AuthenticationService } from './services/authentication-service';
 
 
@@ -19,17 +18,16 @@ export class RequestInterceptor implements HttpInterceptor {
     constructor(
         private _snackBar: SnackBarAppService,
         private translate: TranslateService,
-        private cookieService: CookieService,
         private authenticationService: AuthenticationService) {
 
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (req.url.indexOf(environment.catalogApiEndploint) !== -1 || req.url.indexOf(environment.authenticationApiEndpoint) !== -1) {
-            const authCookie = this.cookieService.getCookie(environment.authenticationApiCookieKey);
+            const currentUser = this.authenticationService.getUser();
             var headers = req.headers;
             var withCredentials = req.withCredentials;
-            if (authCookie) {
+            if (currentUser) {
                 // headers = headers.append('Cookie', authCookie);
                 withCredentials = true;
             }
