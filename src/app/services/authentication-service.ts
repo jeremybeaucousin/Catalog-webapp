@@ -33,7 +33,7 @@ export class AuthenticationService {
       'Authorization': `Basic ${btoa(`${username}:${password}`)}`
     });
 
-    return this.http.get(`${environment.catalogApiEndploint}${AuthenticationService.loginRoute}`,
+    return this.http.get(`${environment.authenticationApiEndpoint}${AuthenticationService.loginRoute}`,
       {
         headers: headers,
         withCredentials: true,
@@ -88,11 +88,15 @@ export class AuthenticationService {
   }
 
   public logout() {
-    this.http.get(`${environment.catalogApiEndploint}${AuthenticationService.logoutRoute}`).subscribe(
+    this.http.get(`${environment.authenticationApiEndpoint}${AuthenticationService.logoutRoute}`).subscribe(
       response => {
         console.debug("successfully disconnected", response);
       }
-    );
+    ),
+      catchError(error => {
+        console.error(error);
+        return [false, error.message];
+      });
     this.localSessionService.removeItem(AuthenticationService.currentUserKey)
     this.router.navigate(['']);
   }
