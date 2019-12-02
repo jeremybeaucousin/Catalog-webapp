@@ -9,8 +9,11 @@ export const environment = {
   catalogApiEndploint: "http://localhost:9001/",
   authenticationApiEndpoint: "http://localhost:9001/",
   authenticationApiCookieKey: "PLAY_SESSION",
-  adminRoles: ["superuser", "catalog_admin"],
-  userRoles: ["catalog_user"],
+  roles: {
+    appAdminRoles: ["superuser", "users_admin"],
+    toolboxesAdminRoles: ["superuser", "catalog_admin"],
+    toolboxesUserRoles: ["catalog_user"],
+  }
 };
 
 /*

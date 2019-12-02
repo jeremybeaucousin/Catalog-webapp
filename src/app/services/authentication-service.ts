@@ -64,27 +64,38 @@ export class AuthenticationService {
   }
 
   private defineUserRoles(roles: Array<String>) {
-    const adminRole = environment.adminRoles.find(element => roles.includes(element));
-    if (adminRole) {
-      return [UserRole.ADMIN, UserRole.USER, UserRole.PUBLIC];
-    } else {
-      const userRole = environment.userRoles.find(element => roles.includes(element));
-      if (userRole) {
-        return [UserRole.USER, UserRole.PUBLIC];
-      } else {
-        return [UserRole.PUBLIC];
-      }
+    const userRoles: Array<UserRole> = [];
+    const appAdminRole = environment.roles.appAdminRoles.find(element => roles.includes(element));
+
+    if (appAdminRole) {
+      userRoles.push(UserRole.APP_ADMIN);
     }
+    const toolboxesAdminRole = environment.roles.toolboxesAdminRoles.find(element => roles.includes(element));
+    if (toolboxesAdminRole) {
+      userRoles.push(UserRole.CATALOG_ADMIN);
+    }
+
+    const toolboxesUserRole = environment.roles.toolboxesUserRoles.find(element => roles.includes(element));
+    if (toolboxesUserRole) {
+      userRoles.push(UserRole.CATALOG_USER);
+    }
+
+    return userRoles;
   }
 
-  public hasAdminPermission() {
+  public hasAppAdminPermission() {
     const user = this.getUser();
-    return user && user.roles.includes(UserRole.ADMIN);
+    return user && user.roles.includes(UserRole.APP_ADMIN);
   }
 
-  public hasUserPermission() {
+  public hasToolboxesAdminPermission() {
     const user = this.getUser();
-    return user && (user.roles.includes(UserRole.USER));
+    return user && user.roles.includes(UserRole.CATALOG_ADMIN);
+  }
+
+  public hasToolboxesUserPermission() {
+    const user = this.getUser();
+    return user && (user.roles.includes(UserRole.CATALOG_USER));
   }
 
   public logout() {

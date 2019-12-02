@@ -94,12 +94,12 @@ export class ToolBoxTableComponent implements AfterViewInit, OnInit {
     })
   }
 
-  hasAdminPermission() {
-    return this.authenticationService.hasAdminPermission();
+  hasToolboxesAdminPermission() {
+    return this.authenticationService.hasToolboxesAdminPermission();
   }
 
-  hasUserPermission() {
-    return this.authenticationService.hasUserPermission();
+  hasToolboxesUserPermission() {
+    return this.authenticationService.hasToolboxesUserPermission();
   }
 
 

@@ -51,8 +51,8 @@ import { RequestInterceptor } from './request-interceptor';
 
 import { UserToken } from './models/user-token';
 import { CanActivatePublic } from './permissions/can-activate-public';
-import { CanActivateAdmin } from './permissions/can-activate-admin';
-import { CanActivateUser } from './permissions/can-activate-user';
+import { CanActivateToolboxesAdmin } from './permissions/can-activate-toolboxes-admin';
+import { CanActivateToolboxesUser } from './permissions/can-activate-toolboxes-user';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ToolBoxTableComponent } from './tool-box-table/tool-box-table.component';
 
@@ -106,8 +106,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     CanActivatePublic,
-    CanActivateAdmin,
-    CanActivateUser,
+    CanActivateToolboxesAdmin,
+    CanActivateToolboxesUser,
     UserToken
   ],
   bootstrap: [AppComponent],

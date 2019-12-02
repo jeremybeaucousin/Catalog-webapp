@@ -1,7 +1,8 @@
 export enum UserRole {
     PUBLIC,
-    ADMIN,
-    USER
+    APP_ADMIN,
+    CATALOG_ADMIN,
+    CATALOG_USER
 }
 
 export class UserToken {

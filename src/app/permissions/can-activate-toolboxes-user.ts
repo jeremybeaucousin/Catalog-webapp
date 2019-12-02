@@ -6,7 +6,7 @@ import { UserToken, UserRole } from '../models/user-token';
 import { AuthenticationService } from '../services/authentication-service';
 
 @Injectable()
-export class CanActivateUser implements CanActivate {
+export class CanActivateToolboxesUser implements CanActivate {
   constructor(private router: Router,
     private authenticationService: AuthenticationService) { }
 
@@ -15,7 +15,7 @@ export class CanActivateUser implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user: UserToken = this.authenticationService.getUser();
-    if (user == null || !user.roles.includes(UserRole.USER)) {
+    if (user == null || !user.roles.includes(UserRole.CATALOG_USER)) {
       alert('You are not allowed to view this page');
       this.router.navigate(['']);
       return false;

@@ -6,8 +6,8 @@
                 i18n-placeholder="Label for search field in toolboxes form@@toolBoxesFieldSearchLabel"
                 placeholder="Filtre">
         </mat-form-field>
-        <a *ngIf="hasAdminPermission()" mat-icon-button [routerLink]="['tool-box-sheet']" routerLinkActive="active"
-            i18n-matTooltip="Tooltip for toolbox add@@toolTipToolBoxesAdd"
+        <a *ngIf="hasToolboxesAdminPermission()" mat-icon-button [routerLink]="['tool-box-sheet']"
+            routerLinkActive="active" i18n-matTooltip="Tooltip for toolbox add@@toolTipToolBoxesAdd"
             matTooltip="Ajouter une nouvelle boite à outil" class="col-md-1 add-icon">
             <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon>
         </a>
@@ -37,13 +37,13 @@
                     matTooltip="Visualiser une boite à outil, en travaux !" disabled>
                     <fa-icon [icon]="['fas', 'search']"></fa-icon>
                 </a>
-                <a *ngIf="hasAdminPermission()" mat-icon-button
+                <a *ngIf="hasToolboxesAdminPermission()" mat-icon-button
                     i18n-matTooltip="Tooltip for toolbox edit@@toolTipToolBoxesEdit"
                     matTooltip="Modifier une boite à outil" [routerLink]="['tool-box-sheet']"
                     [queryParams]="{ _id: row._id }" routerLinkActive="active">
                     <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                 </a>
-                <button *ngIf="hasAdminPermission()" mat-button
+                <button *ngIf="hasToolboxesAdminPermission()" mat-button
                     i18n-matTooltip="Tooltip for toolbox delete@@toolTipToolBoxesDelete" mat-icon-button
                     matTooltip="Supprimer une boite à outil" (click)="delete(row._id)">
                     <fa-icon [icon]="['fas', 'trash']"></fa-icon>
@@ -62,7 +62,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row"
             [class.expanded-row]="expandedRow === row"
-            (click)="hasUserPermission() && (expandedRow = ((expandedRow === row) ? null : row))">
+            (click)="hasToolboxesUserPermission() && (expandedRow = ((expandedRow === row) ? null : row))">
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row">
         </tr>

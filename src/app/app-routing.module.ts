@@ -5,9 +5,9 @@ import { HomeComponent } from './home/home.component';
 import { ToolBoxSheetsComponent } from './tool-box-sheets/tool-box-sheets.component';
 import { ToolBoxSheetComponent } from './tool-box-sheet/tool-box-sheet.component';
 import { CanActivatePublic } from './permissions/can-activate-public';
-import { CanActivateAdmin } from './permissions/can-activate-admin';
+import { CanActivateToolboxesAdmin } from './permissions/can-activate-toolboxes-admin';
 import { ToolBoxTableComponent } from './tool-box-table/tool-box-table.component';
-import { CanActivateUser } from './permissions/can-activate-user';
+import { CanActivateToolboxesUser } from './permissions/can-activate-toolboxes-user';
 
 const routes: Routes = [
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
         data: {
           breadcrumbTranslationKey: "NAV_TOOLBOXES_TOOLBOXE_PAGE"
         },
-        canActivate: [CanActivateAdmin]
+        canActivate: [CanActivateToolboxesAdmin]
       }
     ]
   },
