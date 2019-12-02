@@ -90,7 +90,7 @@ export class AuthenticationService {
 
   public hasToolboxesAdminPermission() {
     const user = this.getUser();
-    return user && user.roles.includes(UserRole.CATALOG_ADMIN);
+    return user && (user.roles.includes(UserRole.CATALOG_ADMIN) || user.roles.includes(UserRole.APP_ADMIN));
   }
 
   public hasToolboxesUserPermission() {
