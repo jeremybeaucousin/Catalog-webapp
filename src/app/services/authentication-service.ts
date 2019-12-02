@@ -90,12 +90,12 @@ export class AuthenticationService {
 
   public hasToolboxesAdminPermission() {
     const user = this.getUser();
-    return user && (user.roles.includes(UserRole.CATALOG_ADMIN) || user.roles.includes(UserRole.APP_ADMIN));
+    return user && (user.roles.includes(UserRole.CATALOG_ADMIN));
   }
 
   public hasToolboxesUserPermission() {
     const user = this.getUser();
-    return user && (user.roles.includes(UserRole.CATALOG_USER));
+    return user && (user.roles.includes(UserRole.CATALOG_USER) || user.roles.includes(UserRole.CATALOG_ADMIN));
   }
 
   public logout() {
